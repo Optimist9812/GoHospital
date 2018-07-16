@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cggw.register.dao.RegisterationAndUnderlineMapper">
+
+<!--    插入线上预约表-->
+    <insert id="insertIntoRegisteration" parameterType="com.cggw.register.domain.Registeration">
+          INSERT into registeration VALUES(#{registeration.uId},#{registeration.dId},#{registeration.rId},#{registeration.aType},#{registeration.state})
+    </insert>
+
+  <!--  //插入线下预约表
+    boolean insertIntoUnderline(Underline underline);-->
+    <insert id="insertIntoUnderline" parameterType="com.cggw.register.domain.Underline">
+          INSERT into underline VALUES(#{underline.uId},#{underline.dId},#{underline.rId},#{underline.aType},#{underline.hId},#{underline.hDept},#{underline.hRoom},#{underline.state})
+    </insert>
+
+    <!--   boolean deleteUnderline(Integer rId); -->
+    <delete id="deleteUnderline">
+          DELETE from underline where r_id = #{rId}
+    </delete>
+
+
+    <delete id="deleteRegisteration">
+          DELETE from registeration where r_id = #{rId}
+    </delete>
+
+  <!--  //根据用户id查线上预约记录数（前端显示）-->
+    <!--  Registeration queryRegisteration(Integer uId); -->
+    <select id="queryRegisteration" parameterType="java.lang.Integer" resultType="com.cggw.register.domain.Registeration">
+          SELECT * from registeration where u_id =#{uId}
+    </select>
+
+    <select id="queryUnderline"  parameterType="java.lang.Integer" resultType="com.cggw.register.domain.Underline">
+          SELECT * from underline where u_id =#{uId}
+    </select>
+
+</mapper>

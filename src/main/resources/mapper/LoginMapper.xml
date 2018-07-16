@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cggw.login.dao.LoginMapper">
+  <resultMap id="BaseResultMap" type="com.cggw.login.domain.Login">
+    <id column="account" jdbcType="INTEGER" property="account" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select * from login where account = #{account,jdbcType=INTEGER}
+  </select>
+
+  <insert id="insertIntoLogin" parameterType="com.cggw.login.domain.Login">
+    insert into login VALUES(#{account},#{password},#{name})
+  </insert>
+
+  <insert id="insertIntoUser" parameterType="com.cggw.login.domain.Login">
+    insert into user(u_id) VALUES(#{account})
+  </insert>
+
+</mapper>
