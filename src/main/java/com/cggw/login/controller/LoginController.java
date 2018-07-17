@@ -35,8 +35,13 @@ public class LoginController {
      *  发送短信验证码（已完成）
      */
     @RequestMapping("sendMessage")
-    public void sendMessage() {
-        loginService.sendMessage();
+    public void sendMessage(Integer number,HttpServletResponse response) throws IOException {
+        boolean isSuccess = loginService.sendMessage(number);
+        PrintWriter out = null;
+        JSONObject json = new JSONObject();
+        out = response.getWriter();
+        json.put("isSuccess",isSuccess);
+        out.print(json.toString());
     }
 
     /**
