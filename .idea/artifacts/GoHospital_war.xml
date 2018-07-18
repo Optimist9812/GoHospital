@@ -3,6 +3,7 @@
     <output-path>$PROJECT_DIR$/target</output-path>
     <root id="archive" name="GoHospital.war">
       <element id="artifact" artifact-name="GoHospital:war exploded" />
+      <element id="dir-copy" path="$PROJECT_DIR$" />
     </root>
   </artifact>
 </component>

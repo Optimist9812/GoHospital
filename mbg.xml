@@ -19,7 +19,7 @@
         </javaTypeResolver>
 
         <javaModelGenerator
-                targetPackage="com.cggw.register.domain" targetProject=".\src\main\java">
+                targetPackage="com.cggw.forum.domain" targetProject=".\src\main\java">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
@@ -34,7 +34,7 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>-->
 
-        <table tableName="underline" domainObjectName="Underline"></table>
+        <table tableName="reply" domainObjectName="Reply"></table>
 
     </context>
 </generatorConfiguration>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cggw.register.dao.AppointmentMapper">
+
+   <!-- //获取所有帖子的消息
+    List<Forum> getAllForum();-->
+    <select id="getAllForum" resultType="com.cggw.forum.domain.Forum">
+        select * from forum;
+    </select>
+
+    <!--//创建一个帖子
+    boolean insertIntoForum();-->
+    <insert id="insertIntoForum" parameterType="com.cggw.forum.domain.Forum">
+        insert into forum values(#{forum.tId},#{forum.id},#{forum.tTitle},#{forum.tDate))
+    </insert>
+
+
+    <!--//删除一个帖子
+    boolean  deleteForumBytId();-->
+    <delete id="deleteForumBytId" parameterType="java.lang.Integer">
+        delete from forum where t_id = #{tId}
+    </delete>
+
+    <!--//发评论
+    boolean  insertIntoReply();-->
+    <insert id="insertIntoReply" parameterType="com.cggw.forum.domain.Reply">
+          insert into reply(t_id,r_id,r_time,id) values(#{reply.tId},#{reply.rId},#{reply.rTime},#{reply.id})
+    </insert>
+
+    <!--//删帖评论
+    boolean  deleteReply();-->
+    <delete id="deleteReply" parameterType="java.lang.Integer">
+        delete from reply where r_id =#{rId} or st_id = #{rId}
+    </delete>
+
+    <!--//发子评论
+    boolean insertIntoReplyChild();-->
+    <insert id="insertIntoReplyChild" parameterType="com.cggw.forum.domain.Reply">
+       insert into reply values(#{reply.tId},#{reply.rId},#{reply.rTime},#{reply.id},#{reply.stId})
+    </insert>
+
+    <!--//删子评论
+    boolean deleteReplyChild();-->
+    <delete id="deleteReplyChild" parameterType="java.lang.Integer">
+        delete from reply where r_id =#{rId}
+    </delete>
+
+    <!--//进入帖子后获取评论
+    boolean getReplyByForumId();-->
+    <select id="getReplyByForumId" parameterType="java.lang.Integer" resultType="com.cggw.forum.domain.Reply">
+        select * from reply where t_id = #{tId}
+    </select>
+
+
+</mapper>

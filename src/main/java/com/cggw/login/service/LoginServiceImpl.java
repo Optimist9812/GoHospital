@@ -21,7 +21,11 @@ public class LoginServiceImpl implements LoginService {
 
     private LoginMapper loginMapper;
 
-    private String message="";
+    private String message = "";
+
+    private String ssmUsername = "cggw";
+
+    private String ssmPassword = "d41d8cd98f00b204e980";
 
     public LoginServiceImpl() {
         System.out.println("loginservice***");
@@ -64,8 +68,8 @@ public class LoginServiceImpl implements LoginService {
         PostMethod post = new PostMethod("http://sms.webchinese.cn/web_api/");
         post.addRequestHeader("Content-Type",
                 "application/x-www-form-urlencoded;charset=gbk");// 在头文件中设置转码
-        NameValuePair[] data = { new NameValuePair("Uid", "cggw"), // 注册的用户名
-                new NameValuePair("Key", "d41d8cd98f00b204e980"), // 注册成功后,登录网站使用的密钥
+        NameValuePair[] data = { new NameValuePair("Uid", ssmUsername+""), // 注册的用户名
+                new NameValuePair("Key", ssmPassword+""), // 注册成功后,登录网站使用的密钥
                 new NameValuePair("smsMob", number+""), // 手机号码
                 new NameValuePair("smsText",  code+"【oppo公司】") };//设置短信内容
         post.setRequestBody(data);
