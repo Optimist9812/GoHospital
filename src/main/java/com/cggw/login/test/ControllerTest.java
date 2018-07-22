@@ -51,6 +51,7 @@ public class ControllerTest {
                 .andReturn();
     }
 
+
     @Test
     public void register() throws Exception {
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/register")

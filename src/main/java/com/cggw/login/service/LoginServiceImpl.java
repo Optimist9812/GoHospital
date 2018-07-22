@@ -19,6 +19,7 @@ import java.util.Random;
 @Service("loginService")
 public class LoginServiceImpl implements LoginService {
 
+
     private LoginMapper loginMapper;
 
     private String message = "";

@@ -16,6 +16,7 @@ import java.util.Random;
  */
 public class MessageTest {
 
+
     @Test
     public void testMessage() throws IOException {
         HttpClient client = new HttpClient();

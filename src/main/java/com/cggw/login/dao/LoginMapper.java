@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LoginMapper {
+
     Login selectByPrimaryKey(Integer account);
 
     boolean insertIntoLogin(Login login);

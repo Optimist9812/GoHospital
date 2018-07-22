@@ -10,6 +10,7 @@ import java.util.List;
  * Created by lenovo on 2018/7/18.
  */
 public interface ForumMapper {
+
     //获取所有帖子的消息
     List<Forum> getAllForum();
     //创建一个帖子

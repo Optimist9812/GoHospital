@@ -52,6 +52,7 @@ public class LoginController {
         boolean isSuccess = false;
         PrintWriter out = null;
         String token = getToken();
+
         switch (login.getFlag()) {
             case "0":isSuccess=loginService.getLoginByMessage(login);break;
             case "1":isSuccess=loginService.getLoginByPass(login);

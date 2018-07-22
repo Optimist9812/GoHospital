@@ -26,8 +26,10 @@ import java.util.List;
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
 public class MapperTest {
 
+
     @Autowired
     AppointmentMapper appointmentMapper;
+
 
     @Autowired
     RegisterationAndUnderlineMapper registerationAndUnderlineMapper;

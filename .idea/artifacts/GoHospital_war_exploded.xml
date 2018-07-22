@@ -29,7 +29,6 @@
           <element id="library" level="project" name="Maven: org.elasticsearch.plugin:percolator-client:5.0.0" />
           <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.8.2" />
           <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.8.2" />
-          <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.16.10" />
           <element id="library" level="project" name="Maven: org.elasticsearch:elasticsearch:5.0.0" />
           <element id="library" level="project" name="Maven: org.apache.lucene:lucene-core:6.2.0" />
           <element id="library" level="project" name="Maven: org.apache.lucene:lucene-analyzers-common:6.2.0" />

@@ -9,6 +9,7 @@ import java.io.IOException;
  */
 public interface LoginService {
 
+
     boolean getLoginByMessage(Login login);
 
     boolean getLoginByPass(Login login);

@@ -3,6 +3,7 @@ package com.cggw.forum.domain;
 import java.util.Date;
 
 public class Forum {
+
     private Integer tId;
 
     private Integer id;

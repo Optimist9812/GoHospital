@@ -3,6 +3,7 @@ package com.cggw.forum.domain;
 import java.util.Date;
 
 public class Reply {
+
     private Integer rId;
 
     private Integer tId;
