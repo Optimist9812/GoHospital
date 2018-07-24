@@ -3,6 +3,8 @@ package com.cggw.register.domain;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 
 @Getter @Setter
 public class Registeration {
@@ -16,15 +18,19 @@ public class Registeration {
 
     private String state;
 
-    public Registeration(Integer rId, Integer uId, Integer dId, String aType, String state) {
+    private Date apTime;
+
+
+    public Registeration() {
+    }
+
+    public Registeration(Integer rId, Integer uId, Integer dId, String aType, String state, Date apTime) {
         this.rId = rId;
         this.uId = uId;
         this.dId = dId;
         this.aType = aType;
         this.state = state;
-    }
-
-    public Registeration() {
+        this.apTime = apTime;
     }
 
     @Override
@@ -35,6 +41,23 @@ public class Registeration {
                 ", dId=" + dId +
                 ", aType='" + aType + '\'' +
                 ", state='" + state + '\'' +
+                ", apTime=" + apTime +
                 '}';
+    }
+
+    public Integer getuId() {
+        return uId;
+    }
+
+    public Integer getdId() {
+        return dId;
+    }
+
+    public String getaType() {
+        return aType;
+    }
+
+    public Date getApTime() {
+        return apTime;
     }
 }

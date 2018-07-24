@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cggw.register.dao.DoctorMapper">
+
+   <!-- //搜索科室搜索医生（列出医生的头像、职称）
+    List<Doctor> getDocByDept(Integer hId,Integer hDept);-->
+    <select id="getDocByDept" resultType="com.cggw.register.domain.Doctor">
+        select * from doctor where h_id = #{hId} and h_dept = #{hDept}
+    </select>
+
+</mapper>

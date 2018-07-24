@@ -1,13 +1,10 @@
 package com.cggw.login.controller;
 
 import com.alibaba.fastjson.JSONObject;
-
 import com.cggw.login.domain.Login;
 import com.cggw.login.service.LoginService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -52,12 +49,10 @@ public class LoginController {
         boolean isSuccess = false;
         PrintWriter out = null;
         String token = getToken();
-
         switch (login.getFlag()) {
             case "0":isSuccess=loginService.getLoginByMessage(login);break;
             case "1":isSuccess=loginService.getLoginByPass(login);
         }
-        System.out.println("*****");
         JSONObject json = new JSONObject();
         out = response.getWriter();
         json.put("isSuccess",isSuccess);
