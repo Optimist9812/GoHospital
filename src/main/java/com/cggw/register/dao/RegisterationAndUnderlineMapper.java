@@ -30,4 +30,7 @@ public interface RegisterationAndUnderlineMapper {
 
     //根据用户id查线下预约记录数
     List<Underline> queryUnderline(Integer id);
+
+    //修改订单状态
+    boolean changeState(Integer id);
 }

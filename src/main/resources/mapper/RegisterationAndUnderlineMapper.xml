@@ -33,4 +33,10 @@
           SELECT * from underline where u_id =#{uId}
     </select>
 
+   <!-- //修改订单状态
+    boolean changeState(Integer id);-->
+    <update id="changeState" parameterType="java.lang.Integer">
+        update registeration set state = "ok"
+    </update>
+
 </mapper>

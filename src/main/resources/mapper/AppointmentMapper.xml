@@ -25,6 +25,7 @@
         WHERE d_id =#{appointment.dId}
         and ap_type = #{appointment.apType}
         and ap_time = #{appointment.apTime}
+        and ap_remain>0
     </update>
 
 </mapper>

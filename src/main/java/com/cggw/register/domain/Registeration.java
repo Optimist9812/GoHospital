@@ -1,12 +1,14 @@
 package com.cggw.register.domain;
 
+
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
 
 
-@Getter @Setter
+@Getter
+@Setter
 public class Registeration {
     private Integer rId;
 
@@ -45,19 +47,4 @@ public class Registeration {
                 '}';
     }
 
-    public Integer getuId() {
-        return uId;
-    }
-
-    public Integer getdId() {
-        return dId;
-    }
-
-    public String getaType() {
-        return aType;
-    }
-
-    public Date getApTime() {
-        return apTime;
-    }
 }

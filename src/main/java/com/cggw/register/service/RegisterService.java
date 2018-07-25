@@ -131,4 +131,10 @@ public class RegisterService {
         return registerationAndUnderlineMapper.queryUnderline(id);
     }
 
+    /**
+     * 完成预约
+     */
+    public boolean changeState(Integer id){
+        return registerationAndUnderlineMapper.changeState(id);
+    }
 }

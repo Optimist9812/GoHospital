@@ -154,7 +154,7 @@ public class RegisterController {
         out = response.getWriter();
         JSONObject json = new JSONObject();
         //Integer dId, Date apTime, String apType, Integer apMax, Integer apRemain
-        Appointment appointment = new Appointment(registeration.getdId(),registeration.getApTime(),registeration.getaType(),null,null);
+        Appointment appointment = new Appointment(registeration.getDId(),registeration.getApTime(),registeration.getAType(),null,null);
         Underline underline = new Underline();
         if(appointment.getApType() == "online"){
             isSuccess=registerService.updateAppointment(appointment,false);
@@ -177,20 +177,31 @@ public class RegisterController {
         PrintWriter out = null;
         out = response.getWriter();
         JSONObject json = new JSONObject();
-        Appointment appointment = new Appointment(registeration.getdId(),registeration.getApTime(),registeration.getaType(),null,null);
+        Appointment appointment = new Appointment(registeration.getDId(),registeration.getApTime(),registeration.getAType(),null,null);
         if(appointment.getApType() == "online"){
-            isSuccess=registerService.deleteUnderline(registeration.getuId());
+            isSuccess=registerService.deleteUnderline(registeration.getUId());
             isSuccess=registerService.updateAppointment(appointment,true);
         }else{
-            isSuccess=registerService.deleteRegisteration(registeration.getuId());
+            isSuccess=registerService.deleteRegisteration(registeration.getUId());
             isSuccess=registerService.updateAppointment(appointment,true);
         }
         json.put("isSuccess",isSuccess);
         out.print(json.toString());
     }
+
     /**
      * 用户完成检查
      */
+    @RequestMapping("changeState")
+    public void changeState(Integer id,HttpServletResponse response) throws IOException {
+        PrintWriter out = null;
+        out = response.getWriter();
+        JSONObject json = new JSONObject();
+        boolean isSuccess = registerService.changeState(id);
+        json.put("isSuccess",isSuccess);
+        out.print(json.toString());
+
+    }
 
     /**
      * 用户查看自己的预约
@@ -208,7 +219,6 @@ public class RegisterController {
             Registeration registeration = (Registeration) iterator.next();
             json.put("registeration"+i,registeration);
             i++;
-
         }
         iterator = listUnderline.iterator();
         while (iterator.hasNext()){

@@ -39,15 +39,4 @@ public class Appointment{
                 '}';
     }
 
-    public String getApType() {
-        return apType;
-    }
-
-    public Integer getdId() {
-        return dId;
-    }
-
-    public Date getApTime() {
-        return apTime;
-    }
 }
