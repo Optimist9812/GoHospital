@@ -7,8 +7,6 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd
-       http://www.springframework.org/schema/cache
-       http://www.springframework.org/schema/cache/spring-cache.xsd
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
@@ -23,6 +21,8 @@
     <!-- 支持springmvc更高级的一些功能，映射动态请求-->
     <mvc:annotation-driven/>
 
+
+    <!-- 视图解析器-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/"/>
         <property name="suffix" value=".jsp"/>

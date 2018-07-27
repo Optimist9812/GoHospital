@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by lenovo on 2018/7/18.
  */
-@Controller
+@Controller("forumController")
 public class ForumController {
 
     @Autowired

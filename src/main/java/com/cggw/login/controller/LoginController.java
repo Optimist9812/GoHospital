@@ -14,7 +14,7 @@ import java.io.PrintWriter;
 /**
  * Created by lenovo on 2018/7/12.
  */
-@Controller
+
 public class LoginController {
 
     @Resource
@@ -34,6 +34,7 @@ public class LoginController {
     @RequestMapping("sendMessage")
     public void sendMessage(Integer number,HttpServletResponse response) throws IOException {
         boolean isSuccess = loginService.sendMessage(number);
+        System.out.println("****");
         PrintWriter out = null;
         JSONObject json = new JSONObject();
         out = response.getWriter();
@@ -69,8 +70,8 @@ public class LoginController {
         return "a";
     }
 
-    @RequestMapping("register")
-    public void register(Login login,HttpServletResponse response) throws IOException {
+    @RequestMapping("registerAccount")
+    public void registerAccount(Login login,HttpServletResponse response) throws IOException {
         boolean isSuccess = false;
         PrintWriter out = null;
         String token = getToken();

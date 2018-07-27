@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by cgw on 2018/7/24.
  */
-@Service
+@Service("registerService")
 public class RegisterService {
 
     private AppointmentMapper appointmentMapper;

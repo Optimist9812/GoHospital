@@ -1,4 +1,5 @@
-package com.cggw.resaerch.service;
+package com.cggw.research.service;/*
+package com.cggw.research.service;
 
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
@@ -15,10 +16,12 @@ import org.springframework.stereotype.Repository;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+*/
 /**
  * Created by lenovo on 2018/7/12.
- */
-@Repository
+ *//*
+
+@Repository("fullTextSearchBrand1")
 public class FullTextSearchBrand {
 
     private TransportClient client;
@@ -53,9 +56,11 @@ public class FullTextSearchBrand {
         }
     }
 
-    /**
+    */
+/**
      * term测试还有待完成
-     */
+     *//*
+
     @Test
     public void searchTerm(){
         SearchResponse searchResponse = client. prepareSearch(index)
@@ -93,3 +98,4 @@ public class FullTextSearchBrand {
     }
 
 }
+*/

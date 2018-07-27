@@ -38,7 +38,7 @@ public class MapperTest {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         Date date1 = sdf.parse(date);
         String[] a ={"开心","快乐"};
-        Article article = new Article(124,"论无敌是多么的寂寞",date1,a,null);
+        Article article = new Article(126,"论无敌是多么的寂寞",date1,a,null);
         new ArticleMapperImpl().addArticle(article);
     }
 

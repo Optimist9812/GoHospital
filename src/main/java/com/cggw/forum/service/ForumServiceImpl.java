@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by lenovo on 2018/7/18.
  */
-@Service
+@Service("forumService")
 public class ForumServiceImpl implements ForumService {
 
     private ForumMapper forumMapper;

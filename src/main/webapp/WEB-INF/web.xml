@@ -3,9 +3,6 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-
-
-
   <!--1. spring配置-->
   <context-param>
     <param-name>contextConfigLocation</param-name>

@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by cgw on 2018/7/24.
  */
-@Controller
+@Controller("/registerController")
 public class RegisterController {
 
    @Autowired
@@ -88,7 +88,7 @@ public class RegisterController {
      * 根据科室获取医生
      * public List<Doctor> getDocByDept(Integer hId, Integer hDept)
      */
-    @RequestMapping("getHospdeptRoom")
+    @RequestMapping("getDocByDept")
     public void getDocByDept(Integer hId,String hDept,HttpServletResponse response) throws IOException {
         int i=0;
         PrintWriter out = null;

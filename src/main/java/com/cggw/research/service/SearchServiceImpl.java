@@ -1,13 +1,16 @@
-package com.cggw.resaerch.service;
+package com.cggw.research.service;/*
+package com.cggw.research.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.elasticsearch.search.SearchService;
 import org.springframework.stereotype.Service;
 
+*/
 /**
  * Created by lenovo on 2018/7/13.
- */
-@Service
-public class SearchServiceImpl implements SearchService{
+ *//*
+
+@Service("searchService1")
+public class SearchServiceImpl implements SearchService {
 
     FullTextSearchBrand fullTextSearchBrand;
 
@@ -24,3 +27,4 @@ public class SearchServiceImpl implements SearchService{
 
 
 }
+*/
