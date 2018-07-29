@@ -14,7 +14,7 @@ import java.io.PrintWriter;
 /**
  * Created by lenovo on 2018/7/12.
  */
-
+@Controller
 public class LoginController {
 
     @Resource
@@ -64,9 +64,9 @@ public class LoginController {
     /**
      *    生成token（待完成）
      */
-    @RequestMapping("test")
+    @RequestMapping("/test")
     public String getToken(){
-        System.out.println("1234");
+        System.out.println("login中test方法测试完成。");
         return "a";
     }
 
@@ -84,4 +84,5 @@ public class LoginController {
         json.put("token",token);
         out.print(json.toString());
     }
+
 }

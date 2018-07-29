@@ -19,4 +19,5 @@ public interface AppointmentMapper {
 
     //更新医生预约表,剩余量增加或减少(增加用true,减少用false)
     boolean updateAppointment(@Param("appointment") Appointment appointment, @Param("flag") boolean flag);
+
 }

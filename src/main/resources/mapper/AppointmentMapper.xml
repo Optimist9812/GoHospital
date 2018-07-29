@@ -14,7 +14,7 @@
 
     <!--  //更新医生预约表,剩余量增加或减少
     boolean updateAppointment(@Param("id") Integer id, @Param("flag") boolean flag);-->
-    <update id="updateAppointment" parameterType="com.cggw.register.domain.Appointment">
+    <update id="updateAppointment">
         update appointment set
         <if test="flag == true">
             ap_remain = ap_remain + 1
@@ -22,10 +22,10 @@
         <if test="flag == false">
             ap_remain = ap_remain -1
         </if>
-        WHERE d_id =#{appointment.dId}
+        WHERE d_id = #{appointment.dId}
         and ap_type = #{appointment.apType}
         and ap_time = #{appointment.apTime}
-        and ap_remain>0
+        and ap_remain > 0
     </update>
 
 </mapper>

@@ -1,19 +1,16 @@
-package com.cggw.research.controller;/*
 package com.cggw.research.controller;
 
-import com.cggw.research.service.SearchService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import com.cggw.research.service.SearchService;
+import org.springframework.stereotype.Controller;
 import javax.annotation.Resource;
 
-*/
+
 /**
  * Created by lenovo on 2018/7/13.
- *//*
+ */
 
-@Controller("/searchController")
+@Controller
 public class SearchController {
 
     @Resource
@@ -35,4 +32,3 @@ public class SearchController {
         searchService.searchDoc();
     }
 }
-*/

@@ -22,12 +22,15 @@ import java.net.UnknownHostException;
 /**
  * Created by cgw on 2018/7/26.
  */
-@Controller("/articleController")
+@Controller
 public class ArticleController {
 
     @Autowired
     private ArticleService articleService;
 
+    public ArticleController() {
+        System.out.println("ArticleController已经创建");
+    }
 
     //创建一篇新的文章
     @RequestMapping("addArticle")
@@ -39,7 +42,7 @@ public class ArticleController {
         response.getWriter().print( new JSONObject().put("isSuccess",isSuccess).toString());
     }
 
-    //删除文章
+    //删除文章（已经测通）
     /*@RequestBody是将json形式的数据转化成User类型的数据
     @ResponseBody是将User类型的数据转成json发送到前端*/
     @RequestMapping("deleteArticle")
@@ -57,28 +60,5 @@ public class ArticleController {
         SearchHits sesrchHits = articleService.selectArticle(keyWords);
     }
 
-    private void showResult(SearchResponse response){
-        SearchHits searchHits = response.getHits();
-        float maxScore = searchHits.getMaxScore();
-        System.out.println("maxScore"+maxScore);
-        long totalHits = searchHits.getTotalHits();
-        System.out.println("totalHits"+totalHits);
-        SearchHit[] hits = searchHits.getHits();
-        System.out.println("返回记录数"+hits.length);
-        for(SearchHit hit:hits){
-            long version = hit.version();
-            String id = hit.getId();
-            String index = hit.getIndex();
-            String type = hit.getType();
-            float score = hit.getScore();
-            System.out.println("===================================================");
-            String source = hit.getSourceAsString();
-            System.out.println("version: " + version);
-            System.out.println("id: " + id);
-            System.out.println("index: " + index);
-            System.out.println("type: " + type);
-            System.out.println("score: " + score);
-            System.out.println("source: " + source);
-        }
-    }
+
 }

@@ -2,9 +2,12 @@ package com.cggw.article.test;
 
 import com.cggw.article.dao.ArticleMapperImpl;
 import com.cggw.article.domain.Article;
+import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.junit.After;
 import org.junit.Before;
@@ -46,5 +49,36 @@ public class MapperTest {
     public void testDel() throws UnknownHostException {
         new ArticleMapperImpl().deleteArticle(124);
     }
+
+    @Test
+    public void testSearch() throws UnknownHostException {
+        SearchHits searchHits = new ArticleMapperImpl().selectArticle("无敌");
+        showResult(searchHits);
+    }
+
+    private void showResult(SearchHits searchHits){
+        float maxScore = searchHits.getMaxScore();
+        System.out.println("maxScore"+maxScore);
+        long totalHits = searchHits.getTotalHits();
+        System.out.println("totalHits"+totalHits);
+        SearchHit[] hits = searchHits.getHits();
+        System.out.println("返回记录数"+hits.length);
+        for(SearchHit hit:hits){
+            long version = hit.version();
+            String id = hit.getId();
+            String index = hit.getIndex();
+            String type = hit.getType();
+            float score = hit.getScore();
+            System.out.println("===================================================");
+            String source = hit.getSourceAsString();
+            System.out.println("version: " + version);
+            System.out.println("id: " + id);
+            System.out.println("index: " + index);
+            System.out.println("type: " + type);
+            System.out.println("score: " + score);
+            System.out.println("source: " + source);
+        }
+    }
+
 
 }

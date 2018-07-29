@@ -1,21 +1,23 @@
-package com.cggw.research.service;/*
 package com.cggw.research.service;
 
-import org.elasticsearch.search.SearchService;
+
+import com.cggw.research.dao.FullTestSearchHosp;
+import com.cggw.research.dao.FullTextSearchDoc;
 import org.springframework.stereotype.Service;
 
-*/
 /**
  * Created by lenovo on 2018/7/13.
- *//*
+ */
 
-@Service("searchService1")
+@Service
 public class SearchServiceImpl implements SearchService {
 
-    FullTextSearchBrand fullTextSearchBrand;
+    FullTextSearchDoc fullTextSearchDoc;
+
+    FullTestSearchHosp fullTestSearchHospital;
 
     @Override
-    public String searchDoc(){
+    public String searchDoc() {
         return null;
     }
 
@@ -23,8 +25,4 @@ public class SearchServiceImpl implements SearchService {
     public String searchHosp() {
         return null;
     }
-
-
-
 }
-*/

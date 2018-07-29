@@ -3,8 +3,8 @@
 <mapper namespace="com.cggw.register.dao.HospitalMapper">
    <!-- //推荐医院，属性为医院名称，医院图片，地址，分数.(待修改，待测试）
     List<Hospital> getHospByCommand();-->
-    <select id="getHospByCommand" parameterType="" resultType="com.cggw.register.domain.Hospital">
-        select top 10 * from hospital order by h_score
+    <select id="getHospByCommand" resultType="com.cggw.register.domain.Hospital">
+        select * from hospital order by h_score DESC  limit 10
     </select>
    <!-- //根据医院列出所有科室
     List<String> getHospdept(Integer hId);-->

@@ -6,7 +6,8 @@
 
     <!-- 驼峰命名法开启-->
     <settings>
-            <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="jdbcTypeForNull" value="NULL" />
     </settings>
 
     <typeAliases>

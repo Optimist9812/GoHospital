@@ -1,7 +1,7 @@
 <html>
 <body>
 <h2>Hello World!</h2>
-<form action="articleController/deleteArticle" method="get">
+<form action="/deleteArticle" method="post">
     <input type="text" name="aId"/>
     <input type="submit" value="submit"/>
 </form>

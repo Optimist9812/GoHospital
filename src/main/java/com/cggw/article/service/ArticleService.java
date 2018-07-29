@@ -17,6 +17,9 @@ public class ArticleService {
 
     private ArticleMapper articleMapper = new ArticleMapperImpl();
 
+    public ArticleService() {
+        System.out.println("ArticleService创建完成！");
+    }
 
     //创建一篇新的文章
     public boolean addArticle(Article article) throws IOException {

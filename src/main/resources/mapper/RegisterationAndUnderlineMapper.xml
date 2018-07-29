@@ -4,7 +4,7 @@
 
 <!--    插入线上预约表-->
     <insert id="insertIntoRegisteration" parameterType="com.cggw.register.domain.Registeration">
-          INSERT into registeration VALUES(#{registeration.uId},#{registeration.dId},#{registeration.rId},#{registeration.aType},#{registeration.state})
+          INSERT into registeration VALUES(#{registeration.uId},#{registeration.dId},#{registeration.rId},#{registeration.aType},#{registeration.state},#{registeration.apTime})
     </insert>
 
   <!--  //插入线下预约表

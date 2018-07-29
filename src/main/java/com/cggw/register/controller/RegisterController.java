@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by cgw on 2018/7/24.
  */
-@Controller("/registerController")
+@Controller
 public class RegisterController {
 
    @Autowired

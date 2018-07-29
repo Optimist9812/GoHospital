@@ -1,6 +1,7 @@
 package com.cggw.register.dao;
 
 import com.cggw.register.domain.Hospital;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public interface HospitalMapper {
     List<String> getHospdept(Integer hId);
 
     //根据医院、科别列出所有科室
-    List<String> getHospdeptRoom(Integer hId,String hDept);
+    List<String> getHospdeptRoom(@Param("hId") Integer hId,@Param("hDept") String hDept);
 
 
 

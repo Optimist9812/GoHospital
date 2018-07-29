@@ -88,6 +88,12 @@
           <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.10" />
           <element id="library" level="project" name="Maven: commons-httpclient:commons-httpclient:3.1" />
           <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.1.1" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.15" />
+          <element id="library" level="project" name="Maven: javax.mail:mail:1.4" />
+          <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
+          <element id="library" level="project" name="Maven: javax.jms:jms:1.1" />
+          <element id="library" level="project" name="Maven: com.sun.jdmk:jmxtools:1.2.1" />
+          <element id="library" level="project" name="Maven: com.sun.jmx:jmxri:1.2.1" />
         </element>
       </element>
       <element id="directory" name="META-INF">

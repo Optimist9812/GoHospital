@@ -1,11 +1,10 @@
 package com.cggw.register.test;
 
-import com.cggw.login.dao.LoginMapper;
 import com.cggw.register.dao.AppointmentMapper;
+import com.cggw.register.dao.DoctorMapper;
+import com.cggw.register.dao.HospitalMapper;
 import com.cggw.register.dao.RegisterationAndUnderlineMapper;
-import com.cggw.register.domain.Appointment;
-import com.cggw.register.domain.Registeration;
-import com.cggw.register.domain.Underline;
+import com.cggw.register.domain.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +31,12 @@ public class MapperTest {
     @Autowired
     RegisterationAndUnderlineMapper registerationAndUnderlineMapper;
 
+    @Autowired
+    DoctorMapper doctorMapper ;
+
+    @Autowired
+    HospitalMapper hospitalMapper;
+
     @Test
     public void testQueryDoc(){
         List<Appointment> a = appointmentMapper.queryDoc(1);
@@ -53,22 +58,32 @@ public class MapperTest {
         }
     }
 
+    /**
+     * 错误,time问题,必须加上8：00
+     * @throws ParseException
+     */
     @Test
     public void testUpdateAppointment() throws ParseException {
-        String date = "20180711";
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        String date = "2018-07-11 08:00:00";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date1 = sdf.parse(date);
-        Appointment appointment = new Appointment(1,date1,"1",0,0);
-        appointmentMapper.updateAppointment(appointment,false);
+        System.out.println(date1.toString());
+        Appointment appointment = new Appointment(1,date1,"1",null,null);
+        appointmentMapper.updateAppointment(appointment,true);
+        System.out.println(appointmentMapper.updateAppointment(appointment,true));
+        //appointmentMapper.updateAppointment();
         testQueryDept();
     }
 
-  @Test
-    public void testInsertIntoRegisteration(){
-      //Registeration r = new Registeration(3,1,1,"1","1");
-      Underline underline = new Underline(1,1,1,"1",1,"1","1","1");
-     // System.out.println(registerationAndUnderlineMapper.insertIntoRegisteration(r));
-      System.out.println(registerationAndUnderlineMapper.insertIntoUnderline(underline));
+        @Test
+    public void testInsertIntoRegisteration() throws ParseException {
+        String date = "20180710";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        Date date1 = sdf.parse(date);
+        Registeration r = new Registeration(12,1,1,"1","1",date1);
+        //Underline underline = new Underline(10,1,1,"1",1,"1","1","1");
+        System.out.println(registerationAndUnderlineMapper.insertIntoRegisteration(r));
+        //System.out.println(registerationAndUnderlineMapper.insertIntoUnderline(underline));
     }
 
     @Test
@@ -103,4 +118,49 @@ public class MapperTest {
 
         }
     }
+
+    //搜索科室搜索医生（列出医生的头像、职称）
+    //List<Doctor> getDocByDept(Integer hId, String hDept);
+    @Test
+    public void testGetDocByDept(){
+        List<Doctor> list = doctorMapper.getDocByDept(1, "儿科");
+        Iterator iterator =list.iterator();
+        while(iterator.hasNext()){
+            System.out.println(iterator.next());
+        }
+    }
+
+    //推荐医院，属性为医院名称，医院图片，地址，分数.(待修改，待测试）
+    //List<Hospital> getHospByCommand();
+    @Test
+    public void testGetHospByCommand(){
+        List<Hospital> list = hospitalMapper.getHospByCommand();
+        Iterator iterator =list.iterator();
+        while(iterator.hasNext()){
+            System.out.println(iterator.next());
+        }
+    }
+
+    //根据医院列出所有科室
+    //List<String> getHospdept(Integer hId);
+    @Test
+    public void testGetHospdept(){
+        List<String> list = hospitalMapper.getHospdept(1);
+        Iterator iterator =list.iterator();
+        while(iterator.hasNext()){
+            System.out.println(iterator.next());
+        }
+    }
+
+    //根据医院、科别列出所有科室
+    //List<String> getHospdeptRoom(Integer hId,String hDept);
+    @Test
+    public void testGetHospdeptRoom(){
+        List<String> list = hospitalMapper.getHospdeptRoom(1,"1");
+        Iterator iterator =list.iterator();
+        while(iterator.hasNext()){
+            System.out.println(iterator.next());
+        }
+    }
+
 }

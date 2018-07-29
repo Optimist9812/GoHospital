@@ -76,6 +76,7 @@ public class RegisterService {
      */
     public boolean updateAppointment(Appointment appointment, boolean flag){
         return appointmentMapper.updateAppointment(appointment,flag);
+        //return false;
     }
 
     /**
