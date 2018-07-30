@@ -12,7 +12,7 @@ import java.net.UnknownHostException;
 /**
  * Created by cgw on 2018/7/26.
  */
-@Service("articleService")
+@Service
 public class ArticleService {
 
     private ArticleMapper articleMapper = new ArticleMapperImpl();

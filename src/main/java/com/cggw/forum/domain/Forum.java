@@ -1,7 +1,11 @@
 package com.cggw.forum.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 
+@Getter @Setter
 public class Forum {
 
     private Integer tId;
@@ -12,35 +16,27 @@ public class Forum {
 
     private Date tDate;
 
-    public Integer gettId() {
-        return tId;
+    private String fContent;
+
+    @Override
+    public String toString() {
+        return "Forum{" +
+                "tId=" + tId +
+                ", id=" + id +
+                ", tTitle='" + tTitle + '\'' +
+                ", tDate=" + tDate +
+                ", fContent='" + fContent + '\'' +
+                '}';
     }
 
-    public void settId(Integer tId) {
+    public Forum(Integer tId, Integer id, String tTitle, Date tDate, String fContent) {
         this.tId = tId;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String gettTitle() {
-        return tTitle;
-    }
-
-    public void settTitle(String tTitle) {
-        this.tTitle = tTitle == null ? null : tTitle.trim();
-    }
-
-    public Date gettDate() {
-        return tDate;
-    }
-
-    public void settDate(Date tDate) {
+        this.tTitle = tTitle;
         this.tDate = tDate;
+        this.fContent = fContent;
+    }
+
+    public Forum() {
     }
 }

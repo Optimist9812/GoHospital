@@ -3,6 +3,7 @@ package com.cggw.forum.service;
 import com.cggw.forum.dao.ForumMapper;
 import com.cggw.forum.domain.Forum;
 import com.cggw.forum.domain.Reply;
+import com.cggw.login.domain.Login;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,9 +16,20 @@ public class ForumServiceImpl implements ForumService {
 
     private ForumMapper forumMapper;
 
+
     @Override
-    public List<Forum> getAllForum() {
-        return forumMapper.getAllForum();
+    public List<Forum> getAllForums() {
+        return null;
+    }
+
+    @Override
+    public Login getIdName(Integer id) {
+        return null;
+    }
+
+    @Override
+    public int queryCount(Integer tId) {
+        return 0;
     }
 
     @Override
@@ -52,13 +64,13 @@ public class ForumServiceImpl implements ForumService {
         return false;
     }
 
-    @Override
+/*    @Override
     public boolean insertIntoReplyChild(Reply reply) {
         if(forumMapper.insertIntoReplyChild(reply)){
             return true;
         }
         return false;
-    }
+    }*/
 
     @Override
     public boolean deleteReplyChild(Integer rId) {
@@ -69,10 +81,12 @@ public class ForumServiceImpl implements ForumService {
     }
 
     @Override
-    public boolean getReplyByForumId(Integer tId) {
-        if(forumMapper.getReplyByForumId(tId)){
-            return true;
-        }
-        return false;
+    public List<Reply> getReplyByForumId(Integer tId) {
+       return null;
+    }
+
+    @Override
+    public Forum getForumById(Integer fid) {
+        return null;
     }
 }

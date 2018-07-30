@@ -1,7 +1,11 @@
 package com.cggw.forum.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 
+@Getter @Setter
 public class Reply {
 
     private Integer rId;
@@ -14,43 +18,29 @@ public class Reply {
 
     private Integer stId;
 
-    public Integer getrId() {
-        return rId;
-    }
+    private String rContent;
 
-    public void setrId(Integer rId) {
+    public Reply(Integer rId, Integer tId, Date rTime, Integer id, Integer stId, String rContent) {
         this.rId = rId;
-    }
-
-    public Integer gettId() {
-        return tId;
-    }
-
-    public void settId(Integer tId) {
         this.tId = tId;
-    }
-
-    public Date getrTime() {
-        return rTime;
-    }
-
-    public void setrTime(Date rTime) {
         this.rTime = rTime;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getStId() {
-        return stId;
-    }
-
-    public void setStId(Integer stId) {
         this.stId = stId;
+        this.rContent = rContent;
+    }
+
+    public Reply() {
+    }
+
+    @Override
+    public String toString() {
+        return "Reply{" +
+                "rId=" + rId +
+                ", tId=" + tId +
+                ", rTime=" + rTime +
+                ", id=" + id +
+                ", stId=" + stId +
+                ", rContent='" + rContent + '\'' +
+                '}';
     }
 }

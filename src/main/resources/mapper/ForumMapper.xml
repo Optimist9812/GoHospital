@@ -1,20 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cggw.register.dao.AppointmentMapper">
+<mapper namespace="com.cggw.forum.dao.ForumMapper">
 
    <!-- //获取所有帖子的消息
-    List<Forum> getAllForum();-->
-    <select id="getAllForum" resultType="com.cggw.forum.domain.Forum">
-        select * from forum;
+    List<Forum> getAllForums();-->
+    <select id="getAllForums" resultType="com.cggw.forum.domain.Forum">
+        select * from forum order by t_date DESC
     </select>
 
     <!--//创建一个帖子
     boolean insertIntoForum();-->
     <insert id="insertIntoForum" parameterType="com.cggw.forum.domain.Forum">
-        insert into forum values(#{forum.tId},#{forum.id},#{forum.tTitle},#{forum.tDate))
+        insert into forum values(#{forum.tId},#{forum.id},#{forum.tTitle},#{forum.tDate},#{forum.fContent})
     </insert>
 
 
+    <!--//搜索发帖人的姓名,图像 （待完成）
+    Login getIdName();-->
+    <select id="getIdName" >
+        select u_name as name ,u_pic as pic from user1 where u_id = #{id}
+        union
+        select d_name as name ,d_pic as pic from doctor where d_id = #{id}
+    </select>
+   <!-- //搜索发帖人的评论数
+    int queryCount();-->
+    <select id="queryCount" resultType="java.lang.Integer">
+        select count(*) from reply where t_id = #{tId}
+    </select>
+    <!--//获取发帖内容
+    Forum getForumById(Integer fid);-->
+    <select id="getForumById" resultType="java.lang.String">
+          select t_content from forum where t_id = #{tId}
+    </select>
     <!--//删除一个帖子
     boolean  deleteForumBytId();-->
     <delete id="deleteForumBytId" parameterType="java.lang.Integer">
@@ -24,7 +41,7 @@
     <!--//发评论
     boolean  insertIntoReply();-->
     <insert id="insertIntoReply" parameterType="com.cggw.forum.domain.Reply">
-          insert into reply(t_id,r_id,r_time,id) values(#{reply.tId},#{reply.rId},#{reply.rTime},#{reply.id})
+          insert into reply(t_id,r_id,r_time,id,r_content,st_id) values(#{reply.tId},#{reply.rId},#{reply.rTime},#{reply.id},#{reply.rContent},#{reply.stId})
     </insert>
 
     <!--//删帖评论
@@ -36,7 +53,7 @@
     <!--//发子评论
     boolean insertIntoReplyChild();-->
     <insert id="insertIntoReplyChild" parameterType="com.cggw.forum.domain.Reply">
-       insert into reply values(#{reply.tId},#{reply.rId},#{reply.rTime},#{reply.id},#{reply.stId})
+       insert into reply values(#{reply.tId},#{reply.rId},#{reply.rTime},#{reply.id},#{reply.stId},#{reply.rContent})
     </insert>
 
     <!--//删子评论
@@ -46,10 +63,9 @@
     </delete>
 
     <!--//进入帖子后获取评论
-    boolean getReplyByForumId();-->
+    lsit Reply getReplyByForumId();-->
     <select id="getReplyByForumId" parameterType="java.lang.Integer" resultType="com.cggw.forum.domain.Reply">
         select * from reply where t_id = #{tId}
     </select>
-
 
 </mapper>

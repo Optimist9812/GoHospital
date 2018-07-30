@@ -2,6 +2,7 @@ package com.cggw.forum.service;
 
 import com.cggw.forum.domain.Forum;
 import com.cggw.forum.domain.Reply;
+import com.cggw.login.domain.Login;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -12,20 +13,26 @@ import java.util.List;
 public interface ForumService {
 
     //获取所有帖子的消息
-    List<Forum> getAllForum();
+    List<Forum> getAllForums();
+    //搜索发帖人的姓名
+    Login getIdName(Integer id);
+    //搜索发帖人的评论数
+    int queryCount(Integer tId);
     //创建一个帖子
-    boolean insertIntoForum( Forum forum);
+    boolean insertIntoForum(@Param("forum") Forum forum);
     //删除一个帖子
     boolean  deleteForumBytId(Integer tId);
     //发评论
-    boolean  insertIntoReply(Reply reply);
+    boolean  insertIntoReply(@Param("reply") Reply reply);
     //删评论
     boolean  deleteReply(Integer rId);
-    //发子评论
-    boolean insertIntoReplyChild(Reply reply);
+   /* //发子评论
+    boolean insertIntoReplyChild(@Param("reply") Reply reply);*/
     //删子评论
     boolean deleteReplyChild(Integer rId);
     //进入帖子后获取评论
-    boolean getReplyByForumId(Integer tId);
+    List<Reply> getReplyByForumId(Integer tId);
+    //进入帖子后获取该帖子内容
+    Forum getForumById(Integer tId);
 
 }
