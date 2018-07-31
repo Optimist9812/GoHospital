@@ -4,6 +4,7 @@ import com.cggw.forum.dao.ForumMapper;
 import com.cggw.forum.domain.Forum;
 import com.cggw.forum.domain.Reply;
 import com.cggw.login.domain.Login;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,8 @@ import java.util.List;
 @Service("forumService")
 public class ForumServiceImpl implements ForumService {
 
-    private ForumMapper forumMapper;
+    @Autowired
+    private ForumMapper forumMapper ;
 
 
     @Override
@@ -64,13 +66,6 @@ public class ForumServiceImpl implements ForumService {
         return false;
     }
 
-/*    @Override
-    public boolean insertIntoReplyChild(Reply reply) {
-        if(forumMapper.insertIntoReplyChild(reply)){
-            return true;
-        }
-        return false;
-    }*/
 
     @Override
     public boolean deleteReplyChild(Integer rId) {
@@ -86,7 +81,10 @@ public class ForumServiceImpl implements ForumService {
     }
 
     @Override
-    public Forum getForumById(Integer fid) {
-        return null;
+    public String getForumById(Integer fId) {
+        System.out.println(fId);
+        System.out.println(forumMapper);
+        String s = forumMapper.getForumById(fId);
+        return s;
     }
 }

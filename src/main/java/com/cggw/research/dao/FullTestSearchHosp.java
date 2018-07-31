@@ -17,6 +17,7 @@ import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.junit.After;
 import org.junit.Before;
+import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -25,6 +26,7 @@ import java.net.UnknownHostException;
 /**
  * Created by cgw on 2018/7/29.
  */
+@Repository
 public class FullTestSearchHosp {
 
     private TransportClient client;

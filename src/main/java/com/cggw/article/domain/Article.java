@@ -26,6 +26,9 @@ public class Article {
         this.aAddress = aAddress;
     }
 
+    public Article() {
+    }
+
     @Override
     public String toString() {
         return "Article{" +

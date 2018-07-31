@@ -5,6 +5,8 @@ import com.cggw.login.domain.Login;
 import com.cggw.login.service.LoginService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -25,64 +27,72 @@ public class LoginController {
     }
 
     public LoginController() {
-        System.out.println("*1**");
     }
 
     /**
      *  发送短信验证码（已完成）
      */
+    @ResponseBody
     @RequestMapping("sendMessage")
-    public void sendMessage(Integer number,HttpServletResponse response) throws IOException {
-        boolean isSuccess = loginService.sendMessage(number);
-        System.out.println("****");
+    public boolean sendMessage(Integer number) throws IOException {
+        return  loginService.sendMessage(number);
+       /* System.out.println("****");
         PrintWriter out = null;
         JSONObject json = new JSONObject();
         out = response.getWriter();
         json.put("isSuccess",isSuccess);
-        out.print(json.toString());
+        out.print(json.toString());*/
     }
 
     /**
      *  根据前端传入的Login对用户登录进行检验(已完成)
      */
+    @ResponseBody
     @RequestMapping(value = "login")
-    public void login(Login login, HttpServletResponse response) throws IOException {
+    public ModelAndView login(Login login, ModelAndView model) throws IOException {
         boolean isSuccess = false;
-        PrintWriter out = null;
         String token = getToken();
         switch (login.getFlag()) {
             case "0":isSuccess=loginService.getLoginByMessage(login);break;
             case "1":isSuccess=loginService.getLoginByPass(login);
         }
-        JSONObject json = new JSONObject();
+        model.addObject("token",token);
+        model.addObject("isSuccess",isSuccess);
+        return model;
+       /* JSONObject json = new JSONObject();
         out = response.getWriter();
         json.put("isSuccess",isSuccess);
         json.put("token",token);
-        out.print(json.toString());
+        out.print(json.toString());*/
     }
 
     /**
      *    生成token（待完成）
      */
+    @ResponseBody
     @RequestMapping("/test")
     public String getToken(){
         System.out.println("login中test方法测试完成。");
         return "a";
     }
 
+    //@ResponseBody 加上这个注解就可以返回数据到页面
+    @ResponseBody
     @RequestMapping("registerAccount")
-    public void registerAccount(Login login,HttpServletResponse response) throws IOException {
+    public ModelAndView registerAccount(Login login,ModelAndView model) throws IOException {
         boolean isSuccess = false;
         PrintWriter out = null;
         String token = getToken();
         if(loginService.insertIntoLogin(login)&&loginService.insertIntoUser(login)){
             isSuccess = true;
         }
-        JSONObject json = new JSONObject();
+        model.addObject("token",token);
+        model.addObject("isSuccess",isSuccess);
+        return model;
+       /* JSONObject json = new JSONObject();
         out = response.getWriter();
         json.put("isSuccess",isSuccess);
         json.put("token",token);
-        out.print(json.toString());
+        out.print(json.toString());*/
     }
-
 }

@@ -17,6 +17,7 @@ import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.junit.After;
 import org.junit.Before;
+import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -25,6 +26,7 @@ import java.net.UnknownHostException;
 /**
  * Created by cgw on 2018/7/29.
  */
+@Repository
 public class FullTextSearchDoc {
     private TransportClient client;
     private String index = "doc_index";
@@ -48,7 +50,7 @@ public class FullTextSearchDoc {
     }
 
 
-    public boolean addHosp(Doctor doctor) throws IOException {
+    public boolean addDoc(Doctor doctor) throws IOException {
         setup();
         XContentBuilder source = XContentFactory.jsonBuilder();
         source.startObject()
@@ -73,14 +75,14 @@ public class FullTextSearchDoc {
 
     }
 
-    public boolean deleteHosp(Integer dId) throws UnknownHostException {
+    public boolean deleteDoc(Integer dId) throws UnknownHostException {
         setup();
         DeleteResponse deleteResponse = client.prepareDelete(index,type,dId.toString()).get();
         cleanUp();
         return true;
     }
 
-    public SearchHits selectHosp(String keyWords) throws UnknownHostException {
+    public SearchHits searchDoc(String keyWords) throws UnknownHostException {
         setup();
         SearchResponse response = client.prepareSearch(indics)  //索引库列表
                 .setSearchType(SearchType.DEFAULT)

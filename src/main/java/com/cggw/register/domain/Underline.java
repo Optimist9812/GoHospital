@@ -3,6 +3,8 @@ package com.cggw.register.domain;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter @Setter
 public class Underline {
     private Integer rId;
@@ -21,7 +23,9 @@ public class Underline {
 
     private String state;
 
-    public Underline(Integer rId, Integer uId, Integer dId, String aType, Integer hId, String hDept, String hRoom, String state) {
+    private Date apTime;
+
+    public Underline(Integer rId, Integer uId, Integer dId, String aType, Integer hId, String hDept, String hRoom, String state, Date apTime) {
         this.rId = rId;
         this.uId = uId;
         this.dId = dId;
@@ -30,6 +34,7 @@ public class Underline {
         this.hDept = hDept;
         this.hRoom = hRoom;
         this.state = state;
+        this.apTime = apTime;
     }
 
     public Underline() {
@@ -46,6 +51,7 @@ public class Underline {
                 ", hDept='" + hDept + '\'' +
                 ", hRoom='" + hRoom + '\'' +
                 ", state='" + state + '\'' +
+                ", apTime=" + apTime +
                 '}';
     }
 }

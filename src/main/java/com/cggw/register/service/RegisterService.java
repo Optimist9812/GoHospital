@@ -5,6 +5,7 @@ import com.cggw.register.dao.DoctorMapper;
 import com.cggw.register.dao.HospitalMapper;
 import com.cggw.register.dao.RegisterationAndUnderlineMapper;
 import com.cggw.register.domain.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,12 +16,13 @@ import java.util.List;
 @Service("registerService")
 public class RegisterService {
 
+    @Autowired
     private AppointmentMapper appointmentMapper;
-
+    @Autowired
     private DoctorMapper doctorMapper;
-
+    @Autowired
     private HospitalMapper hospitalMapper;
-
+    @Autowired
     private RegisterationAndUnderlineMapper registerationAndUnderlineMapper;
 
     /**

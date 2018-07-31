@@ -40,6 +40,9 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
   <!-- 2.springMVC的前端控制器 -->
   <servlet>
     <servlet-name>spring</servlet-name>
@@ -50,5 +53,6 @@
     <servlet-name>spring</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+
 
 </web-app>

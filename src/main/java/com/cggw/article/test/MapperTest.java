@@ -23,6 +23,7 @@ import java.net.UnknownHostException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * Created by lenovo on 2018/7/12.
@@ -77,6 +78,11 @@ public class MapperTest {
             System.out.println("type: " + type);
             System.out.println("score: " + score);
             System.out.println("source: " + source);
+            System.out.println(hit.getSource());
+            Map<String, Object> map = hit.getSource();
+            for(Map.Entry<String,Object> entry:map.entrySet()){
+                System.out.println(entry.getKey()  + "   " + entry.getValue());
+            }
         }
     }
 

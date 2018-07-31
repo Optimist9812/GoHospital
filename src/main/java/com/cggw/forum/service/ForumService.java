@@ -33,6 +33,6 @@ public interface ForumService {
     //进入帖子后获取评论
     List<Reply> getReplyByForumId(Integer tId);
     //进入帖子后获取该帖子内容
-    Forum getForumById(Integer tId);
+    String getForumById(Integer tId);
 
 }
