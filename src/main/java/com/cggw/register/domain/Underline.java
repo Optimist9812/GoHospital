@@ -2,6 +2,7 @@ package com.cggw.register.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -23,6 +24,7 @@ public class Underline {
 
     private String state;
 
+    @DateTimeFormat( pattern = "yyyy-MM-dd HH:mm:ss" )
     private Date apTime;
 
     public Underline(Integer rId, Integer uId, Integer dId, String aType, Integer hId, String hDept, String hRoom, String state, Date apTime) {

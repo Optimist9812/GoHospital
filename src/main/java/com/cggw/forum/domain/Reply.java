@@ -2,6 +2,7 @@ package com.cggw.forum.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -12,6 +13,7 @@ public class Reply {
 
     private Integer tId;
 
+    @DateTimeFormat( pattern = "yyyy-MM-dd HH:mm:ss" )
     private Date rTime;
 
     private Integer id;

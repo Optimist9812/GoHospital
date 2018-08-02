@@ -20,6 +20,7 @@ import java.util.Random;
 public class LoginServiceImpl implements LoginService {
 
 
+    @Autowired
     private LoginMapper loginMapper;
 
     private String message = "";

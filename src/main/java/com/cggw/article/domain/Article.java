@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 @Getter @Setter
 public class Article {
@@ -18,7 +19,7 @@ public class Article {
 
     private String aAddress;
 
-    public Article(Integer aId, String aTitle, Date tTime, String[] aTag, String aAddress) {
+    public Article(int aId, String aTitle, Date tTime, String[] aTag, String aAddress) {
         this.aId = aId;
         this.aTitle = aTitle;
         this.tTime = tTime;
@@ -28,6 +29,7 @@ public class Article {
 
     public Article() {
     }
+
 
     @Override
     public String toString() {

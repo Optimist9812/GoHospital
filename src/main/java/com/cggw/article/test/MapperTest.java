@@ -1,24 +1,13 @@
 package com.cggw.article.test;
 
-import com.cggw.article.dao.ArticleMapperImpl;
 import com.cggw.article.domain.Article;
-import org.elasticsearch.action.search.SearchResponse;
+import com.cggw.article.service.ArticleService;
 import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
-import org.elasticsearch.transport.client.PreBuiltTransportClient;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -42,18 +31,18 @@ public class MapperTest {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         Date date1 = sdf.parse(date);
         String[] a ={"开心","快乐"};
-        Article article = new Article(126,"论无敌是多么的寂寞",date1,a,null);
-        new ArticleMapperImpl().addArticle(article);
+        Article article = new Article(127,"论无敌是多么的寂寞",date1,a,null);
+        new ArticleService().addArticle(article);
     }
 
     @Test
     public void testDel() throws UnknownHostException {
-        new ArticleMapperImpl().deleteArticle(124);
+        new ArticleService().deleteArticle(124);
     }
 
     @Test
     public void testSearch() throws UnknownHostException {
-        SearchHits searchHits = new ArticleMapperImpl().selectArticle("无敌");
+        SearchHits searchHits = new ArticleService().selectArticle("无敌");
         showResult(searchHits);
     }
 

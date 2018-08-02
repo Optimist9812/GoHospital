@@ -72,7 +72,6 @@ public class LoginController {
     @ResponseBody
     @RequestMapping("/test")
     public String getToken(){
-        System.out.println("login中test方法测试完成。");
         return "a";
     }
 

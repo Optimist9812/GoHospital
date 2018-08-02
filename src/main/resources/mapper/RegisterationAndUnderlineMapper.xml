@@ -36,7 +36,7 @@
    <!-- //修改订单状态
     boolean changeState(Integer id);-->
     <update id="changeState" parameterType="java.lang.Integer">
-        update registeration set state = "ok"
+        update registeration set state = "ok" where r_id = #{id}
     </update>
 
 </mapper>

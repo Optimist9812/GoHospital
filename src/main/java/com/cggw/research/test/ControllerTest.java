@@ -1,45 +1,42 @@
-package com.cggw.article.test;
+package com.cggw.research.test;
 
 import com.cggw.article.domain.Article;
-import com.cggw.article.service.ArticleService;
+import com.cggw.register.domain.Hospital;
+import com.cggw.research.service.SearchServiceImpl;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
-import org.mybatis.generator.api.MyBatisGenerator;
-import org.mybatis.generator.config.Configuration;
-import org.mybatis.generator.config.xml.ConfigurationParser;
-import org.mybatis.generator.internal.DefaultShellCallback;
 
 import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
-import java.io.File;
 import java.lang.reflect.InvocationTargetException;
+import java.net.UnknownHostException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * Created by lenovo on 2018/7/12.
+ * Created by cgw on 2018/8/1.
  */
-public class MBGTest {
-
-    public static void main(String[] args) throws Exception {
-        SearchHits sesrchHits =new ArticleService().selectArticle("无敌");
-        List<Article> list = showResult(sesrchHits);
+public class ControllerTest {
+    public static void main(String[] args) throws UnknownHostException, IntrospectionException, InstantiationException, IllegalAccessException, ParseException, InvocationTargetException {
+        SearchServiceImpl searchService = new SearchServiceImpl();
+        SearchHits searchHits = searchService.searchHosp("第一");
+        List<Hospital> list = showResult(searchHits);
         Iterator iterator = list.iterator();
         while (iterator.hasNext()){
             System.out.println(iterator.next());
         }
     }
 
-    private static List<Article> showResult(SearchHits searchHits) throws InvocationTargetException, IntrospectionException, InstantiationException, IllegalAccessException, ParseException {
-        List<Article> list = new ArrayList<>();
+    private static List<Hospital> showResult(SearchHits searchHits) throws InvocationTargetException, IntrospectionException, InstantiationException, IllegalAccessException, ParseException {
+        List<Hospital> list = new ArrayList<>();
         SearchHit[] hits = searchHits.getHits();
         for(SearchHit hit:hits){
             Map<String, Object> map = hit.getSource();
-            Article article = Map2Bean(map, Article.class);
-            list.add(article);
+            Hospital hospital = Map2Bean(map, Hospital.class);
+            list.add(hospital);
         }
         return list;
     }
@@ -55,23 +52,10 @@ public class MBGTest {
             str.insert(1,"_");
             System.out.println(str);
             Object value = map.get(new String(str));
-            if(p.getName().equals("ATag")){
-               Object[] objs =  ((ArrayList)value).toArray();
-               String[] s = new String[objs.length];
-               for(int i=0;i<objs.length;i++){
-                   s[i] = (String)objs[i];
-               }
-               value = s;
-            }
-            if(p.getName().equals("TTime")){
-                Date d = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").parse(((String)value).replace("Z", " UTC"));
-                value = d;
-            }
             System.out.println(value);
             p.getWriteMethod().invoke(obj, value);
             System.out.println("****************");
         }
         return obj;
     }
-
 }

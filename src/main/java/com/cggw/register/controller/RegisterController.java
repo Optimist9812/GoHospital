@@ -6,6 +6,7 @@ import com.cggw.register.service.RegisterService;
 import com.sun.org.apache.bcel.internal.generic.RETURN;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,20 +36,9 @@ public class RegisterController {
      */
     @ResponseBody
     @RequestMapping("getRecommendHosp")
-    public void getRecommendHosp(HttpServletResponse response) throws IOException {
-        JSONObject json = new JSONObject();
-        PrintWriter out = null;
-        int k = 0;
-        out = response.getWriter();
-        List<Hospital> list = registerService.getHospByCommand();
-        Iterator<Hospital> iterator = list.iterator();
-        while(iterator.hasNext()&&k<10){
-            Hospital hospital = iterator.next();
-            json.put("hospital"+k,hospital);
-            k++;
-        }
-        out.print(json.toString());
-
+    public List<Hospital> getRecommendHosp() throws IOException {
+        System.out.println("进入");
+        return registerService.getHospByCommand();
     }
 
     /**
@@ -66,7 +56,7 @@ public class RegisterController {
      */
     @ResponseBody
     @RequestMapping("getHospdeptRoom")
-    public List<String> getHospdeptRoom(Integer hId,String hDept,HttpServletResponse response) throws IOException {
+    public List<String> getHospdeptRoom(Integer hId,String hDept) throws IOException {
         return registerService.getHospdeptRoom(hId,hDept);
     }
     /**
@@ -75,7 +65,7 @@ public class RegisterController {
      */
     @ResponseBody
     @RequestMapping("getDocByDept")
-    public List<Doctor> getDocByDept(Integer hId, String hDept, HttpServletResponse response) throws IOException {
+    public List<Doctor> getDocByDept(Integer hId, String hDept) throws IOException {
         return registerService.getDocByDept(hId,hDept);
     }
 
@@ -84,18 +74,19 @@ public class RegisterController {
      */
     @ResponseBody
     @RequestMapping("queryDoc")
-    public List<Appointment> queryDoc(Integer dId,HttpServletResponse response) throws IOException {
+    public List<Appointment> queryDoc(Integer dId) throws IOException {
         return registerService.queryDoc(dId);
     }
 
     /**
-     * 根据科别查所有医生信息情况
+     * 根据科别查所有医生预约信息情况
      *  List<Appointment> queryDept(String hDept)
      */
     @ResponseBody
     @RequestMapping("queryDept")
-    public List<Appointment> queryDept(String hDept,HttpServletResponse response) throws IOException {
-        return  registerService.queryDept(hDept);
+    public List<Appointment> queryDept(String hId,String hDept) throws IOException {
+        System.out.println("进入");
+        return  registerService.queryDept(hId,hDept);
     }
 
     /**
@@ -105,10 +96,11 @@ public class RegisterController {
     @ResponseBody
     @RequestMapping("register")
     public boolean register(Registeration registeration) throws IOException {
+        System.out.println("进入");
         Appointment appointment = new Appointment(registeration.getDId(),registeration.getApTime(),registeration.getAType(),null,null);
-        Boolean isSuccess = registerService.updateAppointment(appointment,false);
-        isSuccess = registerService.insertIntoRegisteration(registeration);
-        return isSuccess;
+        boolean isSuccess = registerService.updateAppointment(appointment,false);
+        boolean isSuccess2 = registerService.insertIntoRegisteration(registeration);
+        return isSuccess&&isSuccess2;
     }
 
     /**
@@ -119,11 +111,11 @@ public class RegisterController {
      */
     @ResponseBody
     @RequestMapping("underline")
-    public boolean underline(Underline underline,HttpServletResponse response) throws IOException {
+    public boolean underline(Underline underline) throws IOException {
         Appointment appointment = new Appointment(underline.getDId(),underline.getApTime(),underline.getAType(),null,null);
-        boolean isSuccess=registerService.updateAppointment(appointment,false);
-        isSuccess=registerService.insertIntoUnderline(underline);
-        return isSuccess;
+        boolean isSuccess1=registerService.updateAppointment(appointment,false);
+        boolean isSuccess=registerService.insertIntoUnderline(underline);
+        return isSuccess1&&isSuccess;
     }
 
 
@@ -132,11 +124,11 @@ public class RegisterController {
      */
     @ResponseBody
     @RequestMapping("cancelRegisteration")
-    public boolean cancelRegisteration(Registeration registeration,HttpServletResponse response) throws IOException {
+    public boolean cancelRegisteration(Registeration registeration) throws IOException {
         Appointment appointment = new Appointment(registeration.getDId(),registeration.getApTime(),registeration.getAType(),null,null);
-        Boolean isSuccess=registerService.deleteUnderline(registeration.getUId());
-        isSuccess=registerService.updateAppointment(appointment,true);
-        return isSuccess;
+        boolean isSuccess1=registerService.deleteRegisteration(registeration.getRId());
+        boolean isSuccess=registerService.updateAppointment(appointment,true);
+        return isSuccess1&&isSuccess;
     }
 
     /**

@@ -1,6 +1,7 @@
 package com.cggw.forum.controller;
 
 import com.cggw.forum.domain.Forum;
+import com.cggw.forum.domain.ForumAndName;
 import com.cggw.forum.domain.Reply;
 import com.cggw.forum.service.ForumService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,45 +27,65 @@ public class ForumController {
     private ForumService forumService;
 
 
+    /**
+     * 首页获取所有内容（测试成功）
+     * @return
+     */
     @RequestMapping("getAllForum")
     @ResponseBody
     //该注解用于将Controller方法返回的对象，通过适当的HttpMessageConverter转换为指定格式后（如：json格式），写入到Response对象的body数据区。
-    public ModelAndView getAllForum(Integer id, Integer tId, ModelAndView model){
-        //获取所有帖子的消息
-        model.addObject("allForums",forumService.getAllForums());
-        //获取每个帖子的发帖人的姓名
-        model.addObject("name",forumService.getIdName(id));
-        //根据帖子id获取评论数
-        model.addObject("totalCount",forumService.queryCount(tId));
-        return model;
-    }
-
-    @ResponseBody
-    @RequestMapping("deleteForum")
-    public boolean deleteForum(Integer fId){
-        //根据forumid删除forum
-        return forumService.deleteForumBytId(fId);
-    }
-
-    @ResponseBody
-    @RequestMapping("insertIntoForum")
-    public boolean inseriIntoForum(Forum forum){
-        return forumService.insertIntoForum(forum);
-    }
-
-    @RequestMapping("queryAllReply/{tId}")
-    @ResponseBody
-    public String queryAllReply(@PathVariable("tId") Integer tId) throws ParseException {
-        //获取该id的发帖内容
-        String forumById = forumService.getForumById(tId);
-        System.out.println("获取json数据");
-        //获取该id所有评论
-        forumService.getReplyByForumId(tId);
-        return forumById;
+    public  List<ForumAndName> getAllForum(){
+        List<ForumAndName> list = forumService.getAll();
+        return list;
     }
 
     /**
-     * 有问题，循环删除所有自评论
+     * 删除一个帖子，包括forum，reply中的内容（测试成功）
+     * @param tId
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("deleteForum")
+    public boolean deleteForum(Integer tId){
+        //根据forumid删除forum
+        forumService.deleteReplyBytId(tId);
+        return forumService.deleteForumBytId(tId);
+    }
+
+    /**
+     *创建一个帖子(测试成功)
+     * @param forum
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("insertIntoForum")
+    public boolean inserIntoForum(Forum forum){
+        System.out.println("进入insertIntoForum");
+        return forumService.insertIntoForum(forum);
+    }
+
+    /**
+     * 点击帖子显示帖子所有评论(测试成功)
+     * @param tId
+     * @return
+     * @throws ParseException
+     */
+    @RequestMapping("queryAllReply")
+    @ResponseBody
+    public ModelAndView queryAllReply(Integer tId,ModelAndView model) throws ParseException {
+        //获取该id的发帖内容
+        String tContent = forumService.getForumById(tId);
+        System.out.println("获取json数据");
+        //获取该id所有评论
+        List<Reply> list = forumService.getReplyByForumId(tId);
+        model.addObject("tContent",tContent);
+        model.addObject("queryAllReply",list);
+        return model;
+    }
+
+
+    /**
+     * 删除所有自评论（待测试）
      * @param rId
      */
     @ResponseBody
@@ -73,12 +94,15 @@ public class ForumController {
         boolean isSuccess = false;
         //根据回帖id删除回帖
         isSuccess = forumService.deleteReply(rId);
-        //如果评论后还有子评论，自评论也要被删除
-        isSuccess = forumService.deleteReplyChild(rId);
         return isSuccess;
     }
 
 
+    /**
+     * 添加评论（测试成功）
+     * @param reply
+     * @return
+     */
     @ResponseBody
     @RequestMapping("addReply")
     public boolean addReply(Reply reply){
@@ -86,4 +110,5 @@ public class ForumController {
         return forumService.insertIntoReply(reply);
     }
 
+    //根据帖子获取所有评论
 }

@@ -25,12 +25,12 @@
         </javaModelGenerator>
 
      <!--   &lt;!&ndash; sql&ndash;&gt;
-        <sqlMapGenerator targetPackage="mapper"  targetProject=".\src\main\resources">
+        <sqlMapGenerator targetPackage="mapper"  targetProject=".\testMainmain\resources">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>-->
 
      <!--   &lt;!&ndash; 指定dao接口&ndash;&gt;
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.cggw.login.dao"  targetProject=".\src\main\java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.cggw.login.dao"  targetProject=".\testMainmain\java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>-->
 

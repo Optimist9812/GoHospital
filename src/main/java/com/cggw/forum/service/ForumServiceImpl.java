@@ -2,6 +2,7 @@ package com.cggw.forum.service;
 
 import com.cggw.forum.dao.ForumMapper;
 import com.cggw.forum.domain.Forum;
+import com.cggw.forum.domain.ForumAndName;
 import com.cggw.forum.domain.Reply;
 import com.cggw.login.domain.Login;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,20 +19,9 @@ public class ForumServiceImpl implements ForumService {
     @Autowired
     private ForumMapper forumMapper ;
 
-
     @Override
-    public List<Forum> getAllForums() {
-        return null;
-    }
-
-    @Override
-    public Login getIdName(Integer id) {
-        return null;
-    }
-
-    @Override
-    public int queryCount(Integer tId) {
-        return 0;
+    public List<ForumAndName> getAll() {
+        return forumMapper.getAll();
     }
 
     @Override
@@ -48,6 +38,11 @@ public class ForumServiceImpl implements ForumService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean deleteReplyBytId(Integer tId) {
+        return forumMapper.deleteReplyBytId(tId);
     }
 
     @Override
@@ -77,14 +72,13 @@ public class ForumServiceImpl implements ForumService {
 
     @Override
     public List<Reply> getReplyByForumId(Integer tId) {
-       return null;
+        return forumMapper.getReplyByForumId(tId);
     }
 
     @Override
-    public String getForumById(Integer fId) {
-        System.out.println(fId);
-        System.out.println(forumMapper);
-        String s = forumMapper.getForumById(fId);
-        return s;
+    public String getForumById(Integer tId) {
+        return forumMapper.getForumById(tId);
     }
+
+
 }

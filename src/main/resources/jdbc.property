@@ -1,4 +1,4 @@
 jdbc.driver=com.mysql.cj.jdbc.Driver
-jdbc.url=jdbc:mysql://127.0.0.1:3306/gohospital?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
+jdbc.url=jdbc:mysql://127.0.0.1:3306/gohospital?serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
 jdbc.username=root
 jdbc.password=tiger

@@ -9,7 +9,7 @@
 
 <!--    //根据科别查所有医生信息情况-->
     <select id="queryDept" parameterType="java.lang.String" resultType="com.cggw.register.domain.Appointment">
-       SELECT  * FROM appointment where d_id in (SELECT d_id from doctor where h_dept = #{hDept})
+       SELECT  * FROM appointment where d_id in (SELECT d_id from doctor where h_dept = #{hDept} and h_id = #{hId})
     </select>
 
     <!--  //更新医生预约表,剩余量增加或减少

@@ -35,7 +35,7 @@ public class MapperTest {
     @Autowired
     ForumMapper forumMapper;
 
-    //获取所有帖子的消息
+/*    //获取所有帖子的消息
     //List<Forum> getAllForum();
     @Test
     public void testGetAllForum(){
@@ -44,7 +44,7 @@ public class MapperTest {
         while(iterator.hasNext()){
             System.out.println(iterator.next());
         }
-    }
+    }*/
 
     //创建一个帖子
     //boolean insertIntoForum(@Param("forum") Forum forum);
@@ -94,7 +94,7 @@ public class MapperTest {
 
     }
 
-    //搜索发帖人的评论数
+   /* //搜索发帖人的评论数
     //int queryCount(Integer tId);
     @Test
     public void testqueryCount(){
@@ -107,5 +107,5 @@ public class MapperTest {
     public void testGetForumById(){
         System.out.println(forumMapper.getForumById(10));
     }
-
+*/
 }

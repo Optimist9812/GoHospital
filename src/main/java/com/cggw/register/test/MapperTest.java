@@ -50,7 +50,7 @@ public class MapperTest {
 
     @Test
     public void testQueryDept(){
-        List<Appointment> a = appointmentMapper.queryDept("儿科");
+        List<Appointment> a = appointmentMapper.queryDept("1","儿科");
         Iterator<Appointment> iterator  = a .iterator();
         while (iterator.hasNext()){
             Appointment appointment = iterator.next();
@@ -64,13 +64,13 @@ public class MapperTest {
      */
     @Test
     public void testUpdateAppointment() throws ParseException {
-        String date = "2018-07-11 08:00:00";
+        String date = "2018-07-11 00:00:00";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date1 = sdf.parse(date);
         System.out.println(date1.toString());
         Appointment appointment = new Appointment(1,date1,"1",null,null);
-        appointmentMapper.updateAppointment(appointment,true);
-        System.out.println(appointmentMapper.updateAppointment(appointment,true));
+        appointmentMapper.updateAppointment(appointment,false);
+       // System.out.println(appointmentMapper.updateAppointment(appointment,true));
         //appointmentMapper.updateAppointment();
         testQueryDept();
     }

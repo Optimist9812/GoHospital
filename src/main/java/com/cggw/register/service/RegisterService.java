@@ -68,8 +68,8 @@ public class RegisterService {
      * 根据科别查所有医生信息情况
      List<Appointment> queryDept(String hDept);
      */
-    public List<Appointment> queryDept(String hDept){
-        return appointmentMapper.queryDept(hDept);
+    public List<Appointment> queryDept(String hId,String hDept){
+        return appointmentMapper.queryDept(hId,hDept);
     }
     /**
      *

@@ -2,6 +2,7 @@ package com.cggw.forum.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -14,6 +15,7 @@ public class Forum {
 
     private String tTitle;
 
+    @DateTimeFormat( pattern = "yyyy-MM-dd HH:mm:ss" )
     private Date tDate;
 
     private String fContent;
