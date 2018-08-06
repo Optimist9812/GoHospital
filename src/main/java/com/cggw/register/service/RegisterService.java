@@ -52,8 +52,8 @@ public class RegisterService {
     /**
      * 根据科室获取医生
      */
-    public List<Doctor> getDocByDept(Integer hId, String hDept){
-        return doctorMapper.getDocByDept(hId,hDept);
+    public List<Doctor> getDocByDept(Integer hId, String hDept,String hRoom){
+        return doctorMapper.getDocByDept(hId,hDept,hRoom);
     }
 
     /**
@@ -139,5 +139,10 @@ public class RegisterService {
      */
     public boolean changeState(Integer id){
         return registerationAndUnderlineMapper.changeState(id);
+    }
+
+    //根据医生id进行搜索医生
+    public Doctor getDocById(Integer dId){
+        return doctorMapper.getDocById(dId);
     }
 }

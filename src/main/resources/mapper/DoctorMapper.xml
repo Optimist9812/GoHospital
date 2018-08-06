@@ -5,7 +5,13 @@
    <!-- //搜索科室搜索医生（列出医生的头像、职称）
     List<Doctor> getDocByDept(Integer hId,Integer hDept);-->
     <select id="getDocByDept" resultType="com.cggw.register.domain.Doctor">
-        select * from doctor where h_id = #{hId} and h_dept = #{hDept}
+        select * from doctor where h_id = #{hId} and h_dept = #{hDept} and h_room = #{hRoom}
+    </select>
+
+<!--    //根据医生id进行搜索医生
+    Doctor getDocById(Integer dId);-->
+    <select id="getDocById" resultType="com.cggw.register.domain.Doctor">
+        select * from doctor where d_id = #{dId}
     </select>
 
 </mapper>

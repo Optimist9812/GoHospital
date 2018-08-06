@@ -65,8 +65,8 @@ public class RegisterController {
      */
     @ResponseBody
     @RequestMapping("getDocByDept")
-    public List<Doctor> getDocByDept(Integer hId, String hDept) throws IOException {
-        return registerService.getDocByDept(hId,hDept);
+    public List<Doctor> getDocByDept(Integer hId, String hDept,String hRoom) throws IOException {
+        return registerService.getDocByDept(hId,hDept,hRoom);
     }
 
     /**
@@ -164,6 +164,13 @@ public class RegisterController {
         model.addObject("listRegisteration",listRegisteration);
         model.addObject("listUnderline",listUnderline);
         return model;
+    }
+
+    @ResponseBody
+    @RequestMapping("getDocById")
+    //根据医生id进行搜索医生
+    public Doctor getDocById(Integer dId){
+        return registerService.getDocById(dId);
     }
 }
 

@@ -123,7 +123,7 @@ public class MapperTest {
     //List<Doctor> getDocByDept(Integer hId, String hDept);
     @Test
     public void testGetDocByDept(){
-        List<Doctor> list = doctorMapper.getDocByDept(1, "儿科");
+        List<Doctor> list = doctorMapper.getDocByDept(1, "儿科","1");
         Iterator iterator =list.iterator();
         while(iterator.hasNext()){
             System.out.println(iterator.next());

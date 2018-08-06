@@ -13,5 +13,8 @@ import java.util.List;
 public interface DoctorMapper {
 
     //搜索科室搜索医生（列出医生的头像、职称）
-    List<Doctor> getDocByDept(@Param("hId") Integer hId,@Param("hDept") String hDept);
+    List<Doctor> getDocByDept(@Param("hId") Integer hId,@Param("hDept") String hDept,@Param("hRoom")String hRoom);
+
+    //根据医生id进行搜索医生
+    Doctor getDocById(Integer dId);
 }
