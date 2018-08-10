@@ -8,6 +8,7 @@ import com.cggw.register.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -60,7 +61,7 @@ public class RegisterService {
      *根据医生id查询医生预约情况（前端展示）
      List<Appointment> queryDoc(Integer dId);
      */
-    public List<Appointment> queryDoc(Integer dId){
+    public List<Date> queryDoc(Integer dId){
         return appointmentMapper.queryDoc(dId);
     }
 
@@ -144,5 +145,10 @@ public class RegisterService {
     //根据医生id进行搜索医生
     public Doctor getDocById(Integer dId){
         return doctorMapper.getDocById(dId);
+    }
+
+    //getDocHospById
+    public String getDocHospById(Integer dId){
+        return doctorMapper.getDocHospById(dId);
     }
 }

@@ -15,6 +15,8 @@ import javax.print.Doc;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -74,8 +76,15 @@ public class RegisterController {
      */
     @ResponseBody
     @RequestMapping("queryDoc")
-    public List<Appointment> queryDoc(Integer dId) throws IOException {
-        return registerService.queryDoc(dId);
+    public List<String> queryDoc(Integer dId) throws IOException {
+        List<String> list = new ArrayList<String>();
+        List<Date> listDate = registerService.queryDoc(dId);
+        Iterator<Date> iterator = listDate.iterator();
+        while (iterator.hasNext()){
+            String str = iterator.next().toString();
+            list.add(str);
+        }
+        return list;
     }
 
     /**
@@ -171,6 +180,12 @@ public class RegisterController {
     //根据医生id进行搜索医生
     public Doctor getDocById(Integer dId){
         return registerService.getDocById(dId);
+    }
+
+    @ResponseBody
+    @RequestMapping("getDocHospById")
+    public String getDocHospById(Integer dId){
+        return registerService.getDocHospById(dId);
     }
 }
 

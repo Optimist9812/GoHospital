@@ -17,4 +17,7 @@ public interface DoctorMapper {
 
     //根据医生id进行搜索医生
     Doctor getDocById(Integer dId);
+
+    //根据医生id进行搜索该医生的医院
+    String getDocHospById(Integer dId);
 }

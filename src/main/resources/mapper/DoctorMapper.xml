@@ -14,4 +14,12 @@
         select * from doctor where d_id = #{dId}
     </select>
 
+
+   <!-- //根据医生id进行搜索该医生的医院
+    String getDocHospById(Integer dId);-->
+    <select id="getDocHospById" resultType="java.lang.String">
+        select h_name from hospital where h_id IN (
+          select h_id from doctor where d_id = #{dId})
+    </select>
+
 </mapper>
