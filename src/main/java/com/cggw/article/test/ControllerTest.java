@@ -36,13 +36,15 @@ public class ControllerTest {
 
     @Test
     public void testAddArticle() throws Exception {
-        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/addArticle")
-                .param("aId","10000")
-                .param("aTitle","西红柿首富")
-                .param("tTime","2018-08-01")
-     //           .param("aTag","搞笑")
-                .param("aTag","经典")
-                .param("aAddress","localhost"))
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/addArticle")
+                .param("aId","1000")
+                .param("aName","纪柳院长：割双眼皮疼不疼？哪种好？")
+                .param("aUrl","http://120.79.241.203:8080/GoHospital/article/article1.jsp")
+                .param("aTime","2018-04-11 16:34:32")
+                .param("aAuthor","帆帆老师")
+                .param("img1Url","http://120.79.241.203:8080/GoHospital/img/article1/1.png")
+                .param("img2Url","http://120.79.241.203:8080/GoHospital/img/article1/2.png")
+                .param("img3Url","http://120.79.241.203:8080/GoHospital/img/article1/3.png"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
     }
@@ -59,7 +61,7 @@ public class ControllerTest {
     @Test
     public void testselectArticle() throws Exception {
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/selectArticle")
-                .param("keyWords","无敌"))
+                .param("keyWords","纪柳院长"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
     }
