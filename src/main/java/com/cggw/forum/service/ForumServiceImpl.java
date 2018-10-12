@@ -20,8 +20,8 @@ public class ForumServiceImpl implements ForumService {
     private ForumMapper forumMapper ;
 
     @Override
-    public List<ForumAndName> getAll() {
-        return forumMapper.getAll();
+    public List<ForumAndName> getAll(String keywords) {
+        return forumMapper.getAll(keywords);
     }
 
     @Override
@@ -78,6 +78,11 @@ public class ForumServiceImpl implements ForumService {
     @Override
     public String getForumById(Integer tId) {
         return forumMapper.getForumById(tId);
+    }
+
+    @Override
+    public List<Forum> getOwnForum(int account) {
+        return forumMapper.getOwnForum(account);
     }
 
 

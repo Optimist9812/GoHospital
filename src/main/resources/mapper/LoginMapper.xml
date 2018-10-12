@@ -12,11 +12,38 @@
   </select>
 
   <insert id="insertIntoLogin" parameterType="com.cggw.login.domain.Login">
-    insert into login VALUES(#{account},#{password},#{name})
+    insert into login VALUES(#{login.account},#{login.password},#{login.name})
   </insert>
 
   <insert id="insertIntoUser" parameterType="com.cggw.login.domain.Login">
     insert into user(u_id) VALUES(#{account})
   </insert>
 
+  <!--int getAccout(int number);-->
+  <select id="getAccout" resultType="java.lang.Integer">
+    SELECT u_id from user where u_tel = #{number}
+    UNION
+    select d_id from doctor where d_tel = #{number};
+  </select>
+
+<!--  boolean insertIntoUser2(String tel,String id);-->
+  <insert id="insertIntoUser2">
+    insert into user(u_id,u_tel) values(#{id},#{tel});
+  </insert>
+<!--  int getIdBytel(int tel);-->
+  <select id="getIdBytel" resultType="java.lang.Integer">
+    select u_id from user where u_tel = #{tel}
+    union
+    select d_id from doctor where d_tel = #{tel}
+  </select>
+
+ <!-- int getPassByAccount(int account);-->
+  <select id="getPassByAccount" resultType="java.lang.Integer">
+    select password from login where account = #{account}
+  </select>
+
+ <!-- Boolean  updatePass(int account,int pass);-->
+  <update id="updatePass">
+    update login set password = #{pass} where account = #{account}
+  </update>
 </mapper>

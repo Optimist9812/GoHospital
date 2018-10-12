@@ -2,6 +2,10 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+<!--<<<<<<< Updated upstream-->
     <file url="PROJECT" charset="UTF-8" />
+<!--=======-->
+    <file url="file://$PROJECT_DIR$/src/main/java/com/cggw/register/test/ControllerTest.java" charset="UTF-8" />
+<!--&gt;>>>>>> Stashed changes-->
   </component>
 </project>

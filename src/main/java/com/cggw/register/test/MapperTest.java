@@ -39,10 +39,10 @@ public class MapperTest {
 
     @Test
     public void testQueryDoc(){
-        List<Appointment> a = appointmentMapper.queryDoc(1);
-        Iterator<Appointment> iterator  = a .iterator();
+        List<Date> a = appointmentMapper.queryDoc(1);
+        Iterator<Date> iterator  = a .iterator();
         while (iterator.hasNext()){
-            Appointment appointment = iterator.next();
+            Date appointment = iterator.next();
             System.out.println(appointment);
         }
 
@@ -161,6 +161,12 @@ public class MapperTest {
         while(iterator.hasNext()){
             System.out.println(iterator.next());
         }
+    }
+
+    @Test
+    public void testGetDocHospById(){
+        String str =  doctorMapper.getDocHospById(2);
+        System.out.println(str);
     }
 
 }

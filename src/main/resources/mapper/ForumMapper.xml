@@ -10,15 +10,16 @@
 
     <!-- 首页面中所有帖子需要获取的所有内容-->
     <select id="getAll" resultType="com.cggw.forum.domain.ForumAndName">
-       SELECT m.t_id,t_content,name,pic,count from
+/*       SELECT m.t_id,t_content,name,pic,count from
             (select t_date,t_id,t_content,name,pic from forum,
                     (select u_name as name ,u_pic as pic,u_id as id from user
                     union
                     select d_name as name ,d_pic as pic ,d_id as id from doctor) t where forum.id = t.id) m,
             (select count(*) as count ,t_id from reply GROUP BY t_id) k
 where m.t_id = k.t_id
-order by t_date DESC
-    </select>
+order by t_date DESC*/
+         SELECT * from (SELECT f.t_id,t_title,t_content,t_date,u_pic,u_name,count(*) cou from forum f, user u,reply r where f.id = u.u_id and f.t_id=r.t_id and f.keyword = #{keyword}GROUP BY f.t_id) k LIMIT 10
+   </select>
 
 
     <!--//创建一个帖子
@@ -73,6 +74,12 @@ order by t_date DESC
     String getForumById(Integer tId);-->
     <select id="getForumById" resultType="java.lang.String">
         SELECT t_content from forum where t_id = #{tId}
+    </select>
+
+  <!--  //根据用户id获取帖子
+    List<Forum> getOwnForum(int account);-->
+    <select id="getOwnForum" resultType="com.cggw.forum.domain.Forum">
+        SELECT * from forum where id = #{account}
     </select>
 
 </mapper>

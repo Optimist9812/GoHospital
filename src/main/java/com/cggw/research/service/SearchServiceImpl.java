@@ -34,10 +34,10 @@ public class SearchServiceImpl implements SearchService {
     public void setup() throws UnknownHostException {
         //设置集群   sniff 自动探查功能（每5秒会自动查询是否有node连接至es集群）
         Settings settings = Settings.builder().
-                put("cluster.name","elasticsearch").put("client.transport.sniff",true).build();
+                put("cluster.name","elasticsearch").build();
         //创建Client,将Node连接至es集群中
         client = new PreBuiltTransportClient(settings)
-                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("localhost"),9300));
+                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("120.79.241.203"),9300));
     }
 
 

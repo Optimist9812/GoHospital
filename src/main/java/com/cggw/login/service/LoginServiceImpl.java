@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -25,12 +27,12 @@ public class LoginServiceImpl implements LoginService {
 
     private String message = "";
 
-    private String ssmUsername = "cggw";
+    private String ssmUsername = "llff";
 
     private String ssmPassword = "d41d8cd98f00b204e980";
 
     public LoginServiceImpl() {
-        System.out.println("loginservice***");
+
     }
 
     /**
@@ -62,9 +64,12 @@ public class LoginServiceImpl implements LoginService {
      * 获取验证短信（已完成）
     */
     @Override
-    public boolean sendMessage(Integer number) throws IOException {
+    public Map<Integer,Object> sendMessage(String number) throws IOException {
+
         //随机生成验证码
         String code = getRandom();
+        Boolean isSuccess;
+        Map<Integer,Object> map = new HashMap<>();
 
         HttpClient client = new HttpClient();
         PostMethod post = new PostMethod("http://sms.webchinese.cn/web_api/");
@@ -87,8 +92,19 @@ public class LoginServiceImpl implements LoginService {
                 "gbk"));
         System.out.println(result);
         post.releaseConnection();
-        if(result.equals("1")) return true;
-        return false;
+        if("1".equals(result.trim())){
+            isSuccess = true;
+        }else {
+            isSuccess = false;
+        }
+        map.put(1,isSuccess);
+        if(isSuccess) {
+            map.put(2, code);
+        }else{
+            map.put(2,null);
+        }
+        return map;
+
     }
 
     /**
@@ -113,6 +129,42 @@ public class LoginServiceImpl implements LoginService {
         return code;
     }
 
+
+
+    /**
+     * 根据电话获取account
+     * @param number
+     * @return
+     */
+    @Override
+    public int getAccount(int number) {
+        return loginMapper.getAccout(number);
+    }
+
+    //将id 和 电话插入到user表中
+    @Override
+    public boolean insertIntoUser2(String tel, int id) {
+        return loginMapper.insertIntoUser2(tel,id);
+    }
+
+    //根据tel获取id（user表中）（待测试）
+    @Override
+    public int getIdBytel(int tel) {
+        return loginMapper.getIdBytel(tel);
+    }
+
+    //根据account 获取password进行比较（待测试）
+    @Override
+    public int getPassByAccount(int account) {
+        return loginMapper.getPassByAccount(account);
+    }
+
+    //更新密码
+    @Override
+    public Boolean updatePass(int account, int pass) {
+        return loginMapper.updatePass(account, pass);
+    }
+
     /**
      * 前台传入信息后，会在login和user表中分别传入记录
      * @param login
@@ -126,5 +178,8 @@ public class LoginServiceImpl implements LoginService {
     public boolean insertIntoUser(Login login) {
         return loginMapper.insertIntoUser(login);
     }
+
+
+
 
 }

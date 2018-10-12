@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 public interface ForumMapper {
 
-    List<ForumAndName> getAll();
+    List<ForumAndName> getAll(String keyword);
     //创建一个帖子
     boolean insertIntoForum(@Param("forum") Forum forum);
     //删除一个帖子
@@ -34,5 +34,7 @@ public interface ForumMapper {
     List<Reply> getReplyByForumId(Integer tId);
     //根据帖子获取帖标题
     String getForumById(Integer tId);
+    //根据用户id获取帖子
+    List<Forum> getOwnForum(int account);
 
 }

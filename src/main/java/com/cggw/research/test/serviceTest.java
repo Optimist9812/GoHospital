@@ -24,6 +24,7 @@ import java.util.Date;
  * Created by cgw on 2018/7/29.
  */
 public class serviceTest {
+
     private TransportClient client;
 
     private String hospIndex = "hosp_index";
@@ -34,28 +35,28 @@ public class serviceTest {
     private String docType = "doc_type";
     private String[] docIndics ={"hospital_index"};
 
+    @Test
     public void setup() throws UnknownHostException {
         //设置集群   sniff 自动探查功能（每5秒会自动查询是否有node连接至es集群）
         Settings settings = Settings.builder().
-                put("cluster.name","elasticsearch").put("client.transport.sniff",true).build();
+                put("cluster.name","elasticsearch").build();
         //创建Client,将Node连接至es集群中
         client = new PreBuiltTransportClient(settings)
-                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("localhost"),9300));
+                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("120.79.241.203"),9300));
+        System.out.println("****");
     }
-
 
     public void cleanUp(){
         client.close();
     }
 
-
     //添加医生
     @Test
     public void testAddDoc() throws ParseException, IOException {
-        Doctor doctor = new Doctor(1101, "靠你吉瓦", "男", "18262638635", "第三人民医院","A","妇产科","001",10.00,"123","good" );
+        Doctor doctor = new Doctor(1101, "靠你吉瓦", "男", "18262638635", "第三人民医院","A","妇产科","001",10.00,"123","good");
+        System.out.println(doctor);
         addDoc(doctor);
     }
-    // public Hospital(Integer hId, String hName, String hType, String hAddr, String hPic, Double hScore, String hAccess) {
 
     //添加医院
     @Test

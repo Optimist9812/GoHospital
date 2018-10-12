@@ -14,7 +14,7 @@ import java.util.List;
 public interface ForumService {
 
    //进入第一个页面获得所有内容
-    List<ForumAndName> getAll();
+    List<ForumAndName> getAll(String keywords);
     //创建一个帖子
     boolean insertIntoForum(@Param("forum") Forum forum);
     //删除一个帖子
@@ -33,5 +33,7 @@ public interface ForumService {
     List<Reply> getReplyByForumId(Integer tId);
     //根据帖子获取帖标题
     String getForumById(Integer tId);
+    //根据用户id获取帖子
+    List<Forum> getOwnForum(int account);
 
 }

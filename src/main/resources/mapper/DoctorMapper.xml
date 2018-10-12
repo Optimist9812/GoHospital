@@ -19,7 +19,7 @@
     String getDocHospById(Integer dId);-->
     <select id="getDocHospById" resultType="java.lang.String">
         select h_name from hospital where h_id IN (
-          select h_id from doctor where d_id = #{dId})
+          select h_id from doctor where d_id = #{dId} )
     </select>
 
 </mapper>

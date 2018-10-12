@@ -2,6 +2,7 @@ package com.cggw.register.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -9,6 +10,7 @@ import java.util.Date;
 public class Appointment{
     private Integer dId;
 
+    @DateTimeFormat( pattern = "yyyy-MM-dd HH:mm:ss" )
     private Date apTime;
 
     private String apType;

@@ -26,12 +26,10 @@ public class MapperTest {
 
     @Test
     public void testAdd() throws ParseException, IOException {
-        //public Article(Integer aId, String aTitle, Date tTime, String[] aTag)
-        String date = "20180711";
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-        Date date1 = sdf.parse(date);
-        String[] a ={"开心","快乐"};
-        Article article = new Article(127,"论无敌是多么的寂寞",date1,a,null);
+        String str = "2018-04-11 16:34:32";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = simpleDateFormat.parse(str);
+        Article article = new Article(10000,"纪柳院长：割双眼皮疼不疼？哪种好？","http://120.79.241.203:8080/GoHospital/article/article1.jsp",date,"帆帆老师","http://120.79.241.203:8080/GoHospital/img/article1/1.png","http://120.79.241.203:8080/GoHospital/img/article1/2.png","http://120.79.241.203:8080/GoHospital/img/article1/3.png");
         new ArticleService().addArticle(article);
     }
 
@@ -42,7 +40,7 @@ public class MapperTest {
 
     @Test
     public void testSearch() throws UnknownHostException {
-        SearchHits searchHits = new ArticleService().selectArticle("无敌");
+        SearchHits searchHits = new ArticleService().selectArticle("纪柳院长");
         showResult(searchHits);
     }
 

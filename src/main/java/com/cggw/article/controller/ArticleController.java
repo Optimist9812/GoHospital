@@ -35,22 +35,15 @@ public class ArticleController {
     private ArticleService articleService;
 
     public ArticleController() {
-        System.out.println("ArticleController已经创建");
     }
 
     //创建一篇新的文章（待测）
     @ResponseBody
-    @RequestMapping(value="/addArticle",method = RequestMethod.GET)
+    @RequestMapping(value="addArticle")
     public boolean addArticle(Article article) throws IOException{
         boolean isSuccess = articleService.addArticle(article);
-        System.out.println("******");
         return isSuccess;
-
-/*      PrintWriter pw = response.getWriter();
-        JSONObject json = new JSONObject();
-        json.put("isSuccess",isSuccess);
-        response.getWriter().print( new JSONObject().put("isSuccess",isSuccess).toString());*/
-    }
+}
 
     //删除文章（已经测通）
     /*@RequestBody是将json形式的数据转化成User类型的数据
@@ -66,13 +59,26 @@ public class ArticleController {
     @ResponseBody
     @RequestMapping("selectArticle")
     public List<Article> selectArticle(String keyWords) throws UnknownHostException, IntrospectionException, InstantiationException, IllegalAccessException, InvocationTargetException, ParseException {
-        SearchHits sesrchHits =new ArticleService().selectArticle("无敌");
+        SearchHits sesrchHits =new ArticleService().selectArticle(keyWords);
         List<Article> list = showResult(sesrchHits);
         Iterator iterator = list.iterator();
         while (iterator.hasNext()){
             System.out.println(iterator.next());
         }
 
+        return list;
+    }
+
+    //获取初始推荐文章
+    @ResponseBody
+    @RequestMapping("getRecommandArticle")
+    public List<Article> getRecommandArticle() throws UnknownHostException, IntrospectionException, InstantiationException, IllegalAccessException, ParseException, InvocationTargetException {
+        SearchHits searchHits = articleService.getRecommandArticle();
+        List<Article> list = showResult(searchHits);
+        Iterator iterator = list.iterator();
+        while(iterator.hasNext()){
+            System.out.println(iterator.next());
+        }
         return list;
     }
 
@@ -87,29 +93,26 @@ public class ArticleController {
         return list;
     }
 
-    private <T>T  Map2Bean(Map<String,Object> map,Class<T> beanType) throws IllegalAccessException, InstantiationException, IntrospectionException, InvocationTargetException, ParseException {
+    private static <T>T  Map2Bean(Map<String,Object> map, Class<T> beanType) throws IllegalAccessException, InstantiationException, IntrospectionException, InvocationTargetException, ParseException {
         System.out.println(map.toString());
         T obj = beanType.newInstance();
-        BeanInfo info = Introspector.getBeanInfo(obj.getClass(), Object.class);
-        PropertyDescriptor[] propertyDescriptors = info.getPropertyDescriptors();
-        for (PropertyDescriptor p : propertyDescriptors) {
-            StringBuffer str = new StringBuffer(p.getName().toLowerCase());
-            str.insert(1, "_");
-            Object value = map.get(new String(str));
-            if (p.getName().equals("ATag")) {
-                Object[] objs = ((ArrayList) value).toArray();
-                String[] s = new String[objs.length];
-                for (int i = 0; i < objs.length; i++) {
-                    s[i] = (String) objs[i];
-                }
-                value = s;
+        BeanInfo info  = Introspector.getBeanInfo(obj.getClass(),Object.class);
+        PropertyDescriptor[] propertyDescriptors =info.getPropertyDescriptors();
+        for(PropertyDescriptor p:propertyDescriptors){
+            System.out.println("2  "+p.getName());
+            StringBuffer str = new StringBuffer(p.getName());
+            if("A".equals(str.substring(0,1))){
+                str = new StringBuffer(str.substring(0,1).toLowerCase()+str.substring(1));
             }
-            if (p.getName().equals("TTime")) {
-                Date d = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").parse(((String) value).replace("Z", " UTC"));
+            System.out.println(str);
+            Object value = map.get(new String(str));
+            if(p.getName().equals("ATime")){
+                Date d = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").parse(((String)value).replace("Z", " UTC"));
                 value = d;
             }
+            System.out.println(value);
             p.getWriteMethod().invoke(obj, value);
-
+            System.out.println("****************");
         }
         return obj;
     }

@@ -168,6 +168,17 @@ public class ControllerTest {
                 .andReturn();
     }
 
+    /**
+     * 测试成功
+     * @throws Exception
+     */
+    @Test
+    public void testGetDocHospById() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/getDocHospById")
+                .param("dId","2"))
+                .andDo(MockMvcResultHandlers.print())
+                .andReturn();
+    }
 
 
 

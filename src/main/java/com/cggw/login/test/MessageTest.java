@@ -59,6 +59,5 @@ public class MessageTest {
         }
         System.out.println(code);
     }
-
 }
 

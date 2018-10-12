@@ -25,7 +25,7 @@ import java.util.*;
 public class MBGTest {
 
     public static void main(String[] args) throws Exception {
-        SearchHits sesrchHits =new ArticleService().selectArticle("无敌");
+        SearchHits sesrchHits =new ArticleService().selectArticle("纪柳院长");
         List<Article> list = showResult(sesrchHits);
         Iterator iterator = list.iterator();
         while (iterator.hasNext()){
@@ -37,7 +37,7 @@ public class MBGTest {
         List<Article> list = new ArrayList<>();
         SearchHit[] hits = searchHits.getHits();
         for(SearchHit hit:hits){
-            Map<String, Object> map = hit.getSource();
+            Map<String,Object> map = hit.getSource();
             Article article = Map2Bean(map, Article.class);
             list.add(article);
         }
@@ -49,21 +49,14 @@ public class MBGTest {
         BeanInfo info  = Introspector.getBeanInfo(obj.getClass(),Object.class);
         PropertyDescriptor[] propertyDescriptors =info.getPropertyDescriptors();
         for(PropertyDescriptor p:propertyDescriptors){
-            System.out.println(p.getPropertyType());
-            System.out.println(p.getName());
-            StringBuffer str = new StringBuffer(p.getName().toLowerCase());
-            str.insert(1,"_");
+            System.out.println("2  "+p.getName());
+            StringBuffer str = new StringBuffer(p.getName());
+            if("A".equals(str.substring(0,1))){
+                str = new StringBuffer(str.substring(0,1).toLowerCase()+str.substring(1));
+            }
             System.out.println(str);
             Object value = map.get(new String(str));
-            if(p.getName().equals("ATag")){
-               Object[] objs =  ((ArrayList)value).toArray();
-               String[] s = new String[objs.length];
-               for(int i=0;i<objs.length;i++){
-                   s[i] = (String)objs[i];
-               }
-               value = s;
-            }
-            if(p.getName().equals("TTime")){
+            if(p.getName().equals("ATime")){
                 Date d = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").parse(((String)value).replace("Z", " UTC"));
                 value = d;
             }

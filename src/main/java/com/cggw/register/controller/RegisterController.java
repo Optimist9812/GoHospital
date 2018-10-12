@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.print.Doc;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -184,6 +185,7 @@ public class RegisterController {
 
     @ResponseBody
     @RequestMapping("getDocHospById")
+    //根据医生id获取医院名称
     public String getDocHospById(Integer dId){
         return registerService.getDocHospById(dId);
     }

@@ -27,6 +27,10 @@ public class Login {
         this.name = name;
     }
 
+    public Login(Integer account) {
+        this.account = account;
+    }
+
     public Login() {
     }
 

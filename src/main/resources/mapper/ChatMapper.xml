@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cggw.register.dao.AppointmentMapper">
+
+<!--    //推荐高评分，状态为空闲的某科室医生
+    List<Doctor> getRecommendDocToChat(String hDept);-->
+    <select id="getRecommendDocToChat" resultType="com.cggw.register.domain.Doctor">
+        SELECT * from doctor where h_dept = #{hDept} and d_s
+    </select>
+
+   <!-- //开始咨询，修改医生空闲表
+    boolean changeDocStatus(int dId,int uId);-->
+    <update id="changeDocStatus">
+        update doctor set d_status = 0 where d_id = #{dId}
+    </update>
+
+ <!--   //咨询结束
+    boolean changeDocStatus2(int dId);-->
+    <update id="changeDocStatus2">
+        update doctor set d_status = 1 where d_id =#{dId}
+    </update>
+</mapper>

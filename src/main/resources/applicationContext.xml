@@ -44,7 +44,7 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <!-- 指定全局配置文件-->
-        <property name="configLocation" value="classpath:/mybatis-config.xml"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
         <!-- 指定mapper文件位置-->
         <property name="mapperLocations" value="classpath:mapper/*.xml"/>
     </bean>
@@ -60,21 +60,5 @@
     <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
-
-   <!-- <aop:config>
-        &lt;!&ndash;&lt;!&ndash; 切入点表达式&ndash;&gt;&ndash;&gt;
-        <aop:pointcut expression="execution(* com.cggw.*.service..*(..))" id="txPoint"/>
-       &lt;!&ndash; &lt;!&ndash; 配置事务增强&ndash;&gt;&ndash;&gt;
-        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPoint"/>
-    </aop:config>
-
-    &lt;!&ndash; 事务增强 &ndash;&gt;
-    <tx:advice id="txAdvice" transaction-manager="dataSourceTransactionManager">
-        <tx:attributes>
-            <tx:method name="*"/>
-            &lt;!&ndash;&lt;!&ndash; 以get开头的所有方法&ndash;&gt;&ndash;&gt;
-            <tx:method name="get" read-only="true"/>
-        </tx:attributes>
-    </tx:advice>-->
 
 </beans>
